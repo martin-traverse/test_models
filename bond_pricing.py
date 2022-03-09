@@ -66,9 +66,6 @@ class BondPricingModel(trac.TracModel):
         interest_rate_scenario = ctx.get_pandas_table("interest_rate_scenario")
         bond_portfolio = ctx.get_pandas_table("bond_portfolio")
 
-        if filter_defaults:
-            customer_loans.loc[:, :] = customer_loans[customer_loans["loan_condition_cat"] == 0]
-
         bond_portfolio_valuation = bond_portfolio.copy()
         bond_portfolio_valuation["BOND_VALUATION"] = 0.00
 
