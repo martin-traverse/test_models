@@ -87,6 +87,9 @@ class BondPricingModel(trac.TracModel):
         bond_portfolio['MONTHS_TO_MATURITY'] = np.minimum(maximum_number_of_months, bond_portfolio['MONTHS_TO_MATURITY'])
         bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] = (np.floor(bond_portfolio['MONTHS_TO_MATURITY']/(12/bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"]))).astype(int)
 
+        # $ amount received each coupon payment
+        bond_portfolio_valuation["PAYMENT_PER_PERIOD"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / (100 * bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"])
+        
         maximum_payments_left_across_whole_portfolio = bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'].max()
         
         # The DCF to calculate for each payment
