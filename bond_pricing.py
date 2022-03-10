@@ -16,6 +16,7 @@ import tracdap.rt.api as trac
 import typing as tp
 import pandas as pd
 import numpy as np
+import datetime
 
 # Set display options
 pd.set_option("display.max.columns", None)
@@ -81,10 +82,12 @@ class BondPricingModel(trac.TracModel):
         print("The type is : ", type(bond_portfolio.MATURITY_DATE))
         
         print(interest_rate_scenario)
-    
-        bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M'))
-        bond_portfolio['MONTHS_TO_MATURITY'] = bond_portfolio['MONTHS_TO_MATURITY'].astype(int)
         
+        bond_portfolio["MATURITY_DATE"] = datetime.datetime.strptime(bond_portfolio["MATURITY_DATE"], "%Y%m%d").date()
+        bond_portfolio["OBSERVATION_DATE"] = datetime.datetime.strptime(bond_portfolio["OBSERVATION_DATE"], "%Y%m%d").date()
+    
+        bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M')).astype(int)
+
         print(interest_rate_scenario)
     
         # $ amount received each coupon payment
