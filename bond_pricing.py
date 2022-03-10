@@ -72,8 +72,18 @@ class BondPricingModel(trac.TracModel):
         bond_portfolio = ctx.get_pandas_table("bond_portfolio")
 
         bond_portfolio_valuation = bond_portfolio.copy()
-        bond_portfolio_valuation["BOND_VALUATION"] = 1.00
+   
+        # $ amount received each coupon payment
+        bond_portfolio_valuation["PAYMENT_PER_PERIOD"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"]
+        
+        # Discount coupon payments by yield to maturity
+        bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = bond_portfolio_valuation["PAYMENT_PER_PERIOD"] /(1.015)
+        
+        # Discount face value by yield to maturity
+        bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio_valuation["FACE_VALUE"] /(1.015)
 
+        # Sum both discounted values as full value
+        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
         
         # Calculate the total valuation
         total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
