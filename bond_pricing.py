@@ -55,8 +55,13 @@ class BondPricingModel(trac.TracModel):
             trac.F("FACE_VALUE", trac.BasicType.FLOAT, label="Face value", format_code=",|.|2|$|"),
             trac.F("BOND_VALUATION", trac.BasicType.FLOAT, label="Bond valuation", format_code=",|.|2|$|")
         )
+        
+        total_valuation = trac.declare_output_table(
+            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=True, format_code="MONTH"),
+            trac.F("BOND_VALUATION", trac.BasicType.FLOAT, label="Total bond valuation", format_code=",|.|2|$|")
+        )
 
-        return {"bond_portfolio_valuation": bond_portfolio_valuation}
+        return {"bond_portfolio_valuation": bond_portfolio_valuation, "total_valuation": total_valuation}
 
     def run_model(self, ctx: trac.TracContext):
 
@@ -67,13 +72,15 @@ class BondPricingModel(trac.TracModel):
         bond_portfolio = ctx.get_pandas_table("bond_portfolio")
 
         bond_portfolio_valuation = bond_portfolio.copy()
-        bond_portfolio_valuation["BOND_VALUATION"] = 0.00
+        bond_portfolio_valuation["BOND_VALUATION"] = 1.00
 
         
         # Calculate the total valuation
         total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
         
+        # Output the two datasets
         ctx.put_pandas_table("bond_portfolio_valuation", bond_portfolio_valuation)
+        ctx.put_pandas_table("total_valuation", total_valuation)
 
 
 if __name__ == "__main__":
