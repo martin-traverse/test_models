@@ -14,7 +14,11 @@
 
 import tracdap.rt.api as trac
 import typing as tp
+import pandas as pd
+import numpy as np
 
+# Set display options
+pd.set_option("display.max.columns", None)
 
 class BondPricingModel(trac.TracModel):
 
@@ -73,8 +77,15 @@ class BondPricingModel(trac.TracModel):
 
         bond_portfolio_valuation = bond_portfolio.copy()
    
+        print(interest_rate_scenario)
+    
+        bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M'))
+        bond_portfolio['MONTHS_TO_MATURITY'] = bond_portfolio['MONTHS_TO_MATURITY'].astype(int)
+        
+        print(interest_rate_scenario)
+    
         # $ amount received each coupon payment
-        bond_portfolio_valuation["PAYMENT_PER_PERIOD"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"]
+        bond_portfolio_valuation["PAYMENT_PER_PERIOD"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / (100 * bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"])
         
         # Discount coupon payments by yield to maturity
         bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = bond_portfolio_valuation["PAYMENT_PER_PERIOD"] /(1.015)
