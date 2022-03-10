@@ -82,10 +82,10 @@ class BondPricingModel(trac.TracModel):
         print("The type is : ", type(bond_portfolio.MATURITY_DATE))
         
         print(interest_rate_scenario)
+ 
+        bond_portfolio["MATURITY_DATE"]= pd.to_datetime(bond_portfolio["MATURITY_DATE"], format = '%Y%m%d')
+        bond_portfolio["OBSERVATION_DATE"]= pd.to_datetime(bond_portfolio["OBSERVATION_DATE"], format = '%Y%m%d')
         
-        bond_portfolio["MATURITY_DATE"] = datetime.datetime.strptime(bond_portfolio["MATURITY_DATE"], "%Y%m%d").date()
-        bond_portfolio["OBSERVATION_DATE"] = datetime.datetime.strptime(bond_portfolio["OBSERVATION_DATE"], "%Y%m%d").date()
-    
         bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M')).astype(int)
 
         print(interest_rate_scenario)
