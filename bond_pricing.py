@@ -83,10 +83,10 @@ class BondPricingModel(trac.TracModel):
         
         print(interest_rate_scenario)
  
-        bond_portfolio["MATURITY_DATE"]= pd.to_datetime(bond_portfolio["MATURITY_DATE"], format = '%Y%m%d')
-        bond_portfolio["OBSERVATION_DATE"]= pd.to_datetime(bond_portfolio["OBSERVATION_DATE"], format = '%Y%m%d')
-        
+        bond_portfolio["MATURITY_DATE"]= pd.to_datetime(bond_portfolio["MATURITY_DATE"], errors='coerce', format = '%Y-%m-%d')
+        bond_portfolio["OBSERVATION_DATE"]= pd.to_datetime(bond_portfolio["OBSERVATION_DATE"], errors='coerce', format = '%Y-%m-%d')
         bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M')).astype(int)
+        bond_portfolio['MONTHS_TO_MATURITY'] = np.minimum(maximum_number_of_months, bond_portfolio['MONTHS_TO_MATURITY'])
 
         print(interest_rate_scenario)
     
