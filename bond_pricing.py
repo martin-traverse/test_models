@@ -69,6 +69,10 @@ class BondPricingModel(trac.TracModel):
         bond_portfolio_valuation = bond_portfolio.copy()
         bond_portfolio_valuation["BOND_VALUATION"] = 0.00
 
+        
+        # Calculate the total valuation
+        total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
+        
         ctx.put_pandas_table("bond_portfolio_valuation", bond_portfolio_valuation)
 
 
