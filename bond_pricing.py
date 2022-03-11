@@ -122,8 +122,7 @@ class BondPricingModel(trac.TracModel):
         # Sum both discounted values as full value
         bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
         
-        #bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["INTEREST_RATE"]
-        
+        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["INTEREST_RATE"]
        
         # Calculate the total valuation
         total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
