@@ -112,15 +112,13 @@ class BondPricingModel(trac.TracModel):
         for i in range(maximum_payments_left_across_whole_portfolio):
             
             # Discount all coupon payments by yield to maturity
-            bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] = np.where(bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] <= i, bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)), bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"])
+            bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] = np.where(bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] <= i, bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio["PAYMENT_PER_PERIOD"] / pow((1 + (bond_portfolio["INTEREST_RATE"]/100)), i+1)), bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"])
             
         # Discount face value by yield to maturity at maturity only
-        bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio["FACE_VALUE"] / pow(1.015, bond_portfolio['NUMBER_OF_PAYMENTS_LEFT']))
+        bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio["FACE_VALUE"] / pow(1 + (bond_portfolio["INTEREST_RATE"]/100), bond_portfolio['NUMBER_OF_PAYMENTS_LEFT']))
         
         # Sum both discounted values as full value
         bond_portfolio["BOND_VALUATION"] = bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"]
-        
-        bond_portfolio["BOND_VALUATION"] = bond_portfolio["INTEREST_RATE"]
        
         # Calculate the total valuation
         total_valuation = bond_portfolio.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
