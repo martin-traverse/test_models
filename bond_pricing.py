@@ -100,14 +100,14 @@ class BondPricingModel(trac.TracModel):
         for i in range(maximum_payments_left_across_whole_portfolio):
             
             # Discount coupon payments by yield to maturity
-            bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)
+            bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio_valuation["PAYMENT_PER_PERIOD"] / pow(1.015, i+1))
             
             # Discount face value by yield to maturity
-            bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] + bond_portfolio_valuation["FACE_VALUE"] / pow(1.015, i+1)
+            bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio_valuation["FACE_VALUE"] / pow(1.015, i+1))
         
         # Sum both discounted values as full value
         #bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
-        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / (100 * bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"])
+        bond_portfolio_valuation["BOND_VALUATION"] = 1.00 * maximum_payments_left_across_whole_portfolio 
         
         # Calculate the total valuation
         total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
