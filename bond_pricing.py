@@ -76,8 +76,6 @@ class BondPricingModel(trac.TracModel):
         interest_rate_scenario = ctx.get_pandas_table("interest_rate_scenario")
         bond_portfolio = ctx.get_pandas_table("bond_portfolio")
 
-        bond_portfolio_valuation = bond_portfolio.copy()
-   
         # Convert dates
         bond_portfolio["MATURITY_DATE"]= pd.to_datetime(bond_portfolio["MATURITY_DATE"], errors='coerce', format = '%Y-%m-%d')
         bond_portfolio["OBSERVATION_DATE"]= pd.to_datetime(bond_portfolio["OBSERVATION_DATE"], errors='coerce', format = '%Y-%m-%d')
@@ -86,10 +84,10 @@ class BondPricingModel(trac.TracModel):
         # Calculate the number of payments remaining, ceiling set by user is applied
         bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M')).astype(int)
         bond_portfolio['MONTHS_TO_MATURITY'] = np.minimum(maximum_number_of_months, bond_portfolio['MONTHS_TO_MATURITY'])
-        bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] = (np.floor(bond_portfolio['MONTHS_TO_MATURITY']/(12/bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"]))).astype(int)
+        bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] = (np.floor(bond_portfolio['MONTHS_TO_MATURITY']/(12/bond_portfolio["COUPON_PAYMENTS_PER_YEAR"]))).astype(int)
 
         # $ amount received each coupon payment
-        bond_portfolio_valuation["PAYMENT_PER_PERIOD"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / (100 * bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"])
+        bond_portfolio["PAYMENT_PER_PERIOD"] = bond_portfolio["FACE_VALUE"] * bond_portfolio["COUPON_RATE"] / (100 * bond_portfolio["COUPON_PAYMENTS_PER_YEAR"])
         
         maximum_payments_left_across_whole_portfolio = bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'].max()
         
@@ -104,31 +102,31 @@ class BondPricingModel(trac.TracModel):
          'month': interest_rate_scenario["OBSERVATION_DATE"].dt.month,
          'day': 1})
             
-        bond_portfolio_valuation = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
+        bond_portfolio = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
         
         # The DCF to calculate for each payment
-        bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = 0
-        bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = 0
+        bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] = 0
+        bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] = 0
         
         # Sum the discounted cash flow
         for i in range(maximum_payments_left_across_whole_portfolio):
             
             # Discount all coupon payments by yield to maturity
-            bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = np.where(bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] <= i, bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio_valuation["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)), bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"])
+            bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] = np.where(bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] <= i, bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)), bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"])
             
         # Discount face value by yield to maturity at maturity only
-        bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio_valuation["FACE_VALUE"] / pow(1.015, bond_portfolio['NUMBER_OF_PAYMENTS_LEFT']))
+        bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio["FACE_VALUE"] / pow(1.015, bond_portfolio['NUMBER_OF_PAYMENTS_LEFT']))
         
         # Sum both discounted values as full value
-        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
+        bond_portfolio["BOND_VALUATION"] = bond_portfolio["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio["PRESENT_VALUE_OF_FACE_VALUE"]
         
-        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["INTEREST_RATE"]
+        bond_portfolio["BOND_VALUATION"] = bond_portfolio["INTEREST_RATE"]
        
         # Calculate the total valuation
-        total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
+        total_valuation = bond_portfolio.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
         
         # Output the two datasets
-        ctx.put_pandas_table("bond_portfolio_valuation", bond_portfolio_valuation)
+        ctx.put_pandas_table("bond_portfolio_valuation", bond_portfolio)
         ctx.put_pandas_table("total_valuation", total_valuation)
 
 
