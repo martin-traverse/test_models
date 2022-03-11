@@ -29,6 +29,7 @@ class BondPricingModel(trac.TracModel):
 
             trac.P("maximum_number_of_months", trac.BasicType.INTEGER, label="Maximum months to maturity"),
             trac.P("include_zero_coupon_bonds", trac.BasicType.BOOLEAN, label="Include zero coupon bonds in valuation")
+            trac.P("gregs_demo_widget", trac.BasicType.BOOLEAN, label="I appear automatically")
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
