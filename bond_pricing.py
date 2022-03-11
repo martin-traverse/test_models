@@ -28,8 +28,7 @@ class BondPricingModel(trac.TracModel):
         return trac.declare_parameters(
 
             trac.P("maximum_number_of_months", trac.BasicType.INTEGER, label="Maximum months to maturity"),
-            trac.P("include_zero_coupon_bonds", trac.BasicType.BOOLEAN, label="Include zero coupon bonds in valuation"),
-            trac.P("gregs_demo_widget", trac.BasicType.BOOLEAN, label="I appear automatically")
+            trac.P("include_zero_coupon_bonds", trac.BasicType.BOOLEAN, label="Include zero coupon bonds in valuation")
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
@@ -82,6 +81,7 @@ class BondPricingModel(trac.TracModel):
         # Convert dates
         bond_portfolio["MATURITY_DATE"]= pd.to_datetime(bond_portfolio["MATURITY_DATE"], errors='coerce', format = '%Y-%m-%d')
         bond_portfolio["OBSERVATION_DATE"]= pd.to_datetime(bond_portfolio["OBSERVATION_DATE"], errors='coerce', format = '%Y-%m-%d')
+        interest_rate_scenario["OBSERVATION_DATE"]= pd.to_datetime(interest_rate_scenario["OBSERVATION_DATE"], errors='coerce', format = '%Y-%m-%d')
         
         # Calculate the number of payments remaining, ceiling set by user is applied
         bond_portfolio['MONTHS_TO_MATURITY'] = ((bond_portfolio.MATURITY_DATE - bond_portfolio.OBSERVATION_DATE)/np.timedelta64(1, 'M')).astype(int)
@@ -94,19 +94,11 @@ class BondPricingModel(trac.TracModel):
         maximum_payments_left_across_whole_portfolio = bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'].max()
         
         # Merge on the interest scenario
-        bond_portfolio["OBSERVATION_DATE"] = pd.to_datetime(pd.DataFrame({'day': 1, 
-                                              'month': bond_portfolio["OBSERVATION_DATE"].dt.month, 
-                                              'year': bond_portfolio["OBSERVATION_DATE"].dt.year},
-                                              index=bond_portfolio.index))
+        bond_portfolio["OBSERVATION_DATE"] = bond_portfolio["OBSERVATION_DATE"].replace(day=1)
+                
+        interest_rate_scenario["OBSERVATION_DATE"] = interest_rate_scenario["OBSERVATION_DATE"].replace(day=1)
         
-        interest_rate_scenario["OBSERVATION_DATE"]= pd.to_datetime(interest_rate_scenario["OBSERVATION_DATE"], errors='coerce', format = '%Y-%m-%d')
-        
-        interest_rate_scenario["OBSERVATION_DATE"] = pd.to_datetime(pd.DataFrame({'day': 1, 
-                                              'month': interest_rate_scenario["OBSERVATION_DATE"].dt.month, 
-                                              'year': interest_rate_scenario["OBSERVATION_DATE"].dt.year},
-                                              index=interest_rate_scenario.index))
-        
-        bond_portfolio = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
+        #bond_portfolio = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
         
         # The DCF to calculate for each payment
         bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = 0
@@ -124,7 +116,7 @@ class BondPricingModel(trac.TracModel):
         # Sum both discounted values as full value
         bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
         
-        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["INTEREST_RATE"]
+        #bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["INTEREST_RATE"]
         
        
         # Calculate the total valuation
