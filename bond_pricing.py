@@ -94,8 +94,16 @@ class BondPricingModel(trac.TracModel):
         maximum_payments_left_across_whole_portfolio = bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'].max()
         
         # Merge on the interest scenario
-        bond_portfolio["OBSERVATION_DATE"] = bond_portfolio["OBSERVATION_DATE"].replace(day=1)
-        interest_rate_scenario["OBSERVATION_DATE"] = interest_rate_scenario["OBSERVATION_DATE"].replace(day=1)
+        bond_portfolio["OBSERVATION_DATE"] = pd.to_datetime(
+        {'year': bond_portfolio["OBSERVATION_DATE"].dt.year,
+         'month': bond_portfolio["OBSERVATION_DATE"].dt.month,
+         'day': 1})
+        
+        interest_rate_scenario["OBSERVATION_DATE"] = pd.to_datetime(
+        {'year': interest_rate_scenario["OBSERVATION_DATE"].dt.year,
+         'month': interest_rate_scenario["OBSERVATION_DATE"].dt.month,
+         'day': 1})
+            
         bond_portfolio = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
         
         # The DCF to calculate for each payment
