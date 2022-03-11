@@ -100,8 +100,8 @@ class BondPricingModel(trac.TracModel):
         for i in range(maximum_payments_left_across_whole_portfolio):
             
             # Discount all coupon payments by yield to maturity
-            bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'].apply(lambda x: bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] if i > x else bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio_valuation["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)))
-           
+            bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = np.where(bond_portfolio['NUMBER_OF_PAYMENTS_LEFT'] <= i, bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + (bond_portfolio_valuation["PAYMENT_PER_PERIOD"] / pow(1.015, i+1)), bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"])
+            
         # Discount face value by yield to maturity at maturity only
         bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] = bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"] + (bond_portfolio_valuation["FACE_VALUE"] / pow(1.015, bond_portfolio['NUMBER_OF_PAYMENTS_LEFT']))
         
