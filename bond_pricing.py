@@ -104,7 +104,7 @@ class BondPricingModel(trac.TracModel):
          'month': interest_rate_scenario["OBSERVATION_DATE"].dt.month,
          'day': 1})
             
-        bond_portfolio = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
+        bond_portfolio_valuation = pd.merge(bond_portfolio, interest_rate_scenario, how="inner", on=["OBSERVATION_DATE"])
         
         # The DCF to calculate for each payment
         bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] = 0
