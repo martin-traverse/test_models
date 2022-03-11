@@ -107,7 +107,7 @@ class BondPricingModel(trac.TracModel):
         
         # Sum both discounted values as full value
         #bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["PRESENT_VALUE_OF_PAYMENTS"] + bond_portfolio_valuation["PRESENT_VALUE_OF_FACE_VALUE"]
-        bond_portfolio_valuation["BOND_VALUATION"] = 1.00 * np.minimum(maximum_number_of_months, bond_portfolio['MONTHS_TO_MATURITY'])
+        bond_portfolio_valuation["BOND_VALUATION"] = bond_portfolio_valuation["FACE_VALUE"] * bond_portfolio_valuation["COUPON_RATE"] / (100 * bond_portfolio_valuation["COUPON_PAYMENTS_PER_YEAR"])
         
         # Calculate the total valuation
         total_valuation = bond_portfolio_valuation.groupby(['OBSERVATION_DATE'])['BOND_VALUATION'].sum().reset_index()
