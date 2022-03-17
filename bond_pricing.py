@@ -23,7 +23,6 @@ pd.set_option("display.max.columns", None)
 
 class BondPricingModel(trac.TracModel):
 
-    # demo comment 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
 
         return trac.declare_parameters(
