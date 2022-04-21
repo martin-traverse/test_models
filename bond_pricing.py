@@ -34,12 +34,12 @@ class BondPricingModel(trac.TracModel):
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
 
         interest_rate_scenario = trac.declare_input_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=True, format_code="MONTH"),
+            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=False, format_code="MONTH"),
             trac.F("INTEREST_RATE", trac.BasicType.FLOAT, label="Annual yield to maturity", format_code=",|.|2||%")
         )
         
         bond_portfolio = trac.declare_input_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=True, format_code="MONTH"),
+            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=False, format_code="MONTH"),
             trac.F("COUPON_RATE", trac.BasicType.FLOAT, label="Annual coupon rate", format_code=",|.|2||%"),
             trac.F("COUPON_PAYMENTS_PER_YEAR", trac.BasicType.FLOAT, label="Number of coupon payments per year", format_code="|.|0||"),
             trac.F("MATURITY_DATE", trac.BasicType.DATE, label="Maturity Date", format_code="DAY"),
@@ -52,7 +52,7 @@ class BondPricingModel(trac.TracModel):
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
 
         bond_portfolio_valuation = trac.declare_output_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=True, format_code="MONTH"),
+            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=False, format_code="MONTH"),
             trac.F("COUPON_RATE", trac.BasicType.FLOAT, label="Annual coupon rate", format_code=",|.|2||%"),
             trac.F("COUPON_PAYMENTS_PER_YEAR", trac.BasicType.FLOAT, label="Number of coupon payments per year", format_code="|.|0||"),
             trac.F("MATURITY_DATE", trac.BasicType.DATE, label="Maturity Date", format_code="DAY"),
@@ -62,7 +62,7 @@ class BondPricingModel(trac.TracModel):
         )
         
         total_valuation = trac.declare_output_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=True, format_code="MONTH"),
+            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", business_key=True, categorical=False, format_code="MONTH"),
             trac.F("BOND_VALUATION", trac.BasicType.FLOAT, label="Total bond valuation", format_code=",|.|2|$|")
         )
 
