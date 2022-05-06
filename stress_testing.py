@@ -18,7 +18,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
-# Set display options
+# Set dispsslay options
 pd.set_option("display.max.columns", None)
 
 class StressTestingModel(trac.TracModel):
