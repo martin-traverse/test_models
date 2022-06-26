@@ -26,9 +26,13 @@ class CalculateLgd(trac.TracModel):
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
 
         return trac.declare_parameters(
+
+            trac.P("first_forecast_day", trac.BasicType.DATE, label="First month for PD outcome"),
+            trac.P("last_forecast_day", trac.BasicType.DATE, label="Last month for PD outcome"),
+            trac.P("days_of_history", trac.BasicType.INTEGER, label="Days of performance history used for PD"),
             trac.P("advanced_logging", trac.BasicType.BOOLEAN, label="Advanced logging")
         )
-
+    
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
 
         lgd_model_parameters = trac.declare_input_table(
