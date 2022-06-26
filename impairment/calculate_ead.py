@@ -43,7 +43,7 @@ class CalculateEad(trac.TracModel):
             trac.F("PD", trac.BasicType.FLOAT, label="Probability of default", format_code="|.|4||%")
         )
 
-        return {"economic_scenario": economic_scenario, "account_data": account_data}
+        return {"ead_model_parameters": ead_model_parameters, "account_pd2": account_pd2}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
 
@@ -54,7 +54,7 @@ class CalculateEad(trac.TracModel):
             trac.F("EAD", trac.BasicType.FLOAT, label="EAD", format_code="|.|0|£|")
         )
 
-        return {"account_pd": account_pd}
+        return {"account_ead": account_ead}
 
     def run_model(self, ctx: trac.TracContext):
       
