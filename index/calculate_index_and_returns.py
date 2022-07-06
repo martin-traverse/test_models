@@ -21,49 +21,54 @@ import datetime
 # Set display options
 pd.set_option("display.max.columns", None)
 
-class CalculateFreeFloatMarketCap(trac.TracModel):
+
+class CalculateIndexAndReturns(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
-
+        
         return trac.declare_parameters(
-           trac.P("index_calculation_date", trac.BasicType.DATE, label="Date of index calculation"),
-           trac.P("days_of_history", trac.BasicType.INTEGER, label="Days of history"),
-           trac.P("advanced_logging", trac.BasicType.BOOLEAN, label="Advanced logging")
+            trac.P("advanced_logging", trac.BasicType.BOOLEAN, label="Advanced logging")
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-
-        company_data = trac.declare_input_table(
+        
+        market_weights = trac.declare_input_table(
             trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
             trac.F("COMPANY_TICKER", trac.BasicType.STRING, label="Company ticker"),
             trac.F("COMPANY_NAME", trac.BasicType.STRING, label="Company name"),
             trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||"),
             trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency"),
-            trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
+            trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float"),
+            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap"),
+            trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
         )
+        
+        index_parameters = trac.declare_input_table()
 
-        return {"company_data": company_data}
+        return {"market_weights": market_weights, "index_parameters": index_parameters}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-
-        free_float_market_cap = trac.declare_output_table(
+        
+        index_calculation = trac.declare_output_table(
             trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
-            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap")
+            trac.F("INDEX_LEVEL", trac.BasicType.FLOAT, label="Index level", format_code="|.|4||"),
         )
 
-        return {"free_float_market_cap": free_float_market_cap}
+        return {"index_calculation": index_calculation}
 
     def run_model(self, ctx: trac.TracContext):
-      
-        company_data = ctx.get_pandas_table("company_data")
         
-        company_data["TOTAL_FLOAT"] = company_data["SHARE_PRICE_AT_CLOSE"] *  company_data["FREE_FLOAT"]
-      
-        free_float_market_cap = company_data.groupby(['OBSERVATION_DATE'])['TOTAL_FLOAT'].agg('sum')
+        market_weights = ctx.get_pandas_table("market_weights")
+
+        index_parameters = ctx.get_pandas_table("index_parameters")
+
+        market_weights['INDEX_CONTRIBUTION'] = market_weights['SHARE_PRICE_AT_CLOSE'] * market_weights['WEIGHT']/100
         
+        index_calculation = market_weights.groupby(['OBSERVATION_DATE'])['INDEX_CONTRIBUTION'].sum()
+
         # Output the dataset
-        ctx.put_pandas_table("free_float_market_cap", free_float_market_cap)
-      
-if __name__ == "__main__":
-    import trac.rt.launch as launch
-    launch.launch_model(CalculateFreeFloatMarketCap, "calculate_free_float_market_cap.yaml", "../sys_config.yaml")
+        ctx.put_pandas_table("index_calculation", index_calculation)
+
+        if __name__ == "__main__":
+            import trac.rt.launch as launch
+        launch.launch_model(CalculateIndexAndReturns, "calculate_index_and_returns.yaml", "../sys_config.yaml")
