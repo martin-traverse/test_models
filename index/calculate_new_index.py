@@ -71,7 +71,6 @@ class CalculateMarketWeights(trac.TracModel):
         # Output the dataset
         ctx.put_pandas_table("index_calculation", index_calculation)
 
-        if __name__ == "__main__":
-            import trac.rt.launch as launch
-            
-        launch.launch_model(CalculateNewIndex, "calculate_new_index.yaml", "../sys_config.yaml")
+if __name__ == "__main__":
+    import trac.rt.launch as launch
+    launch.launch_model(CalculateNewIndex, "calculate_new_index.yaml", "../sys_config.yaml")
