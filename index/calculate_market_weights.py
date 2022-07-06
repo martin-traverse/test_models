@@ -34,17 +34,17 @@ class CalculateMarketWeights(trac.TracModel):
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
 
 	company_data = trac.declare_input_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
-            trac.F("COMPANY_TICKER", trac.BasicType.STRING, label="Company ticker"),
-            trac.F("COMPANY_NAME", trac.BasicType.STRING, label="Company name"),
-            trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||"),
-            trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency"),
-            trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
+		trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
+           	trac.F("COMPANY_TICKER", trac.BasicType.STRING, label="Company ticker"),
+            	trac.F("COMPANY_NAME", trac.BasicType.STRING, label="Company name"),
+            	trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||"),
+            	trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency"),
+            	trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
         )
 		
         free_float_market_cap = trac.declare_input_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
-            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap")
+		trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
+		trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap")
         )
 
         return {"company_data": company_data, "free_float_market_cap": free_float_market_cap}
