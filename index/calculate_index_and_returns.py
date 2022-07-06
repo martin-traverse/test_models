@@ -43,7 +43,11 @@ class CalculateIndexAndReturns(trac.TracModel):
             trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
         )
         
-        index_parameters = trac.declare_input_table()
+        index_parameters = trac.declare_input_table(
+            trac.F("ID", trac.BasicType.STRING, label="Parameter ID"),
+            trac.F("DESCRIPTION", trac.BasicType.STRING, label="Parameter description"),
+            trac.F("VALUE", trac.BasicType.FLOAT, label="Parameter value")
+        )
 
         return {"market_weights": market_weights, "index_parameters": index_parameters}
 
