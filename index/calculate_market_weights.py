@@ -43,9 +43,9 @@ class CalculateMarketWeights(trac.TracModel):
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
 
         market_weights = trac.declare_output_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
-            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap"),
-						trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
+		trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
+		trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap"),
+		trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
         )
 
         return {"free_float_market_cap": free_float_market_cap}
@@ -53,10 +53,8 @@ class CalculateMarketWeights(trac.TracModel):
     def run_model(self, ctx: trac.TracContext):
       
         market_weights = ctx.get_pandas_table("free_float_market_cap")
-				
-				market_weights['SUM_OF_FREE_FLOAT_MARKET_CAP'] = market_weights["FREE_FLOAT_MARKET_CAP"].sum(axis=0)
-        
-        market_weights["WEIGHT"] = 100) * market_weights["FREE_FLOAT_MARKET_CAP"] /  market_weights["SUM_OF_FREE_FLOAT_MARKET_CAP"]
+	market_weights['SUM_OF_FREE_FLOAT_MARKET_CAP'] = market_weights["FREE_FLOAT_MARKET_CAP"].sum(axis=0)
+	market_weights["WEIGHT"] = 100) * market_weights["FREE_FLOAT_MARKET_CAP"] /  market_weights["SUM_OF_FREE_FLOAT_MARKET_CAP"]
          
         # Output the dataset
         ctx.put_pandas_table("market_weights", market_weights)
