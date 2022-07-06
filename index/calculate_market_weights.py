@@ -42,7 +42,7 @@ class CalculateMarketWeights(trac.TracModel):
             	trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
         )
 		
-        free_float_market_cap = trac.declare_input_table(
+	free_float_market_cap = trac.declare_input_table(
 		trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
 		trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap")
         )
@@ -62,7 +62,7 @@ class CalculateMarketWeights(trac.TracModel):
 		trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
         )
 
-        return {"free_float_market_cap": free_float_market_cap}
+        return {"market_weights": market_weights}
 
     def run_model(self, ctx: trac.TracContext):
       
