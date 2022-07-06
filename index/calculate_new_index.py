@@ -41,40 +41,37 @@ class CalculateMarketWeights(trac.TracModel):
             trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
         )
 
-        free_float_market_cap = trac.declare_input_table(
-            trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
-            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap")
+        index_parameters = trac.declare_input_table(
+            trac.F("ID", trac.BasicType.STRING, label="Parameter ID"),
+            trac.F("DESCRIPTION", trac.BasicType.STRING, label="Parameter description"),
+            trac.F("VALUE", trac.BasicType.FLOAT, label="Parameter value")
         )
 
-        return {"company_data": company_data, "free_float_market_cap": free_float_market_cap}
+        return {"company_data": company_data, "index_parameters": index_parameters}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        market_weights = trac.declare_output_table(
+        index_calculation = trac.declare_output_table(
             trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
             trac.F("COMPANY_TICKER", trac.BasicType.STRING, label="Company ticker"),
             trac.F("COMPANY_NAME", trac.BasicType.STRING, label="Company name"),
             trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||"),
             trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency"),
             trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float"),
-            trac.F("FREE_FLOAT_MARKET_CAP", trac.BasicType.INTEGER, label="Index free float market cap"),
             trac.F("WEIGHT", trac.BasicType.INTEGER, label="Index weight", format_code="|.|2||%")
         )
 
-        return {"market_weights": market_weights}
+        return {"index_calculation": index_calculation}
 
     def run_model(self, ctx: trac.TracContext):
-        free_float_market_cap = ctx.get_pandas_table("free_float_market_cap")
-
-        company_data = ctx.get_pandas_table("company_data")
-
-        market_weights = company_data.merge(free_float_market_cap, how='left', on='OBSERVATION_DATE')
-
-        market_weights["WEIGHT"] = 100 * (market_weights["FREE_FLOAT"] * market_weights["SHARE_PRICE_AT_CLOSE"]) / \
-                                   market_weights["FREE_FLOAT_MARKET_CAP"]
+      
+        index_calculation = ctx.get_pandas_table("company_data")
+        
+        index_calculation["WEIGHT"] = 5
 
         # Output the dataset
-        ctx.put_pandas_table("market_weights", market_weights)
+        ctx.put_pandas_table("index_calculation", index_calculation)
 
         if __name__ == "__main__":
             import trac.rt.launch as launch
-        launch.launch_model(CalculateMarketWeights, "calculate_market_weights.yaml", "../sys_config.yaml")
+            
+        launch.launch_model(CalculateNewIndex, "calculate_new_index.yaml", "../sys_config.yaml")
