@@ -37,8 +37,8 @@ class CalculateFreeFloatMarketCap(trac.TracModel):
             trac.F("OBSERVATION_DATE", trac.BasicType.DATE, label="Date", format_code="MONTH"),
             trac.F("COMPANY_TICKER", trac.BasicType.STRING, label="Company ticker"),
             trac.F("COMPANY_NAME", trac.BasicType.STRING, label="Company name"),
-            trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||")
-            trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency")
+            trac.F("SHARE_PRICE_AT_CLOSE", trac.BasicType.FLOAT, label="Share price at close", format_code="|.|4||"),
+            trac.F("SHARE_PRICE_CURRENCY", trac.BasicType.STRING, label="Share price currency"),
             trac.F("FREE_FLOAT", trac.BasicType.INTEGER, label="Free float")
         )
 
