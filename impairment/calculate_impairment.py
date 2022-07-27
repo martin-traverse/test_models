@@ -18,7 +18,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
-# Set display options
+# Set display options again
 pd.set_option("display.max.columns", None)
 
 class CalculateImpairment(trac.TracModel):
