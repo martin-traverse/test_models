@@ -1,3 +1,6 @@
 {
-  "key": "this_is_a_test_key"
+  "key": "this_is_a_test_key",
+    "name": "test name",
+    "key": "test description",
+  "business_segments": ["RETAIL", "IMPAIRMENT"]
 }
