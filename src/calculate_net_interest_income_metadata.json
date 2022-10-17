@@ -1,5 +1,5 @@
 {
-  key:"calculate_net_interest_income",
-  name:"Calculate net interest income",
-  description: "Calculate net interest income for Pre-provision Net Revenue (PPNR)"
+  "key":"calculate_net_interest_income",
+  "name":"Calculate net interest income",
+  "description":"Calculate net interest income for Pre-provision Net Revenue (PPNR)"
 }
