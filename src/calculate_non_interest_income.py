@@ -15,7 +15,7 @@
 import typing as tp
 # import pandas as pd
 import tracdap.rt.api as trac
-import src.schemas as schemas
+import schemas as schemas
 
 
 class NonInterestIncomeDataModel(trac.TracModel):
