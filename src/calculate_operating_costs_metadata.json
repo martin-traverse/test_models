@@ -1,5 +1,5 @@
 {
   key:"calculate_operating_costs",
   name:"Calculate operating costs",
-  description "Calculate operating costs for Pre-provision Net Revenue (PPNR)"
+  description: "Calculate operating costs for Pre-provision Net Revenue (PPNR)"
 }
