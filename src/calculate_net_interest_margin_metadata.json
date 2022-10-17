@@ -1,5 +1,5 @@
 {
-  key:"calculate_net_interest_margin",
-  name:"Calculate net interest margin",
-  description: "Calculate net interest margin for Pre-provision Net Revenue (PPNR)"
+  "key":"calculate_net_interest_margin",
+  "name":"Calculate net interest margin",
+  "description": "Calculate net interest margin for Pre-provision Net Revenue (PPNR)"
 }
