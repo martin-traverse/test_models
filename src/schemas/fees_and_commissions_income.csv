@@ -1,0 +1,8 @@
+field_name, field_type, label, categorical, business_key, format_code
+id, STRING, Customer account ID, false, true
+business_line, STRING, Customer account ID, false, true
+product_line, STRING, Customer account ID, false, true
+region, STRING, Customer account ID, false, true
+subregion, STRING, Customer account ID, false, true
+mortgage_type, STRING, Customer account ID, false, true
+commissions_fees, DECIMAL, Customer account ID, false, false
