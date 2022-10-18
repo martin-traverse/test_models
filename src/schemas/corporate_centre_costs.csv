@@ -5,7 +5,7 @@ product_line, STRING, Customer account ID, false, true
 region, STRING, Customer account ID, false, true
 subregion, STRING, Customer account ID, false, true
 mortgage_type, STRING, Customer account ID, false, true
-it_compute_cost, DECIMAL, Customer account ID, false, false
-it_infrastructure_cost, DECIMAL, Customer account ID, false, false
-physical_infrastructure_cost, DECIMAL, Customer account ID, false, false
-employee_costs, DECIMAL, Customer account ID, false, false
+it_compute_cost, FLOAT, Customer account ID, false, false
+it_infrastructure_cost, FLOAT, Customer account ID, false, false
+physical_infrastructure_cost, FLOAT, Customer account ID, false, false
+employee_costs, FLOAT, Customer account ID, false, false
