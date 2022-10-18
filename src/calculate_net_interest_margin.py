@@ -33,8 +33,8 @@ class NetInterestMarginDataModel(trac.TracModel):
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
         interest_paid_assets = trac.load_schema(schemas, "average_interest_paid_on_assets.csv")
         interest_earned_assets = trac.load_schema(schemas, "average_interest_earned_on_assets.csv")
-        return {"interest_paid_assets": trac.ModelInputSchema(interest_paid_assets),
-                "interest_earned_assets": trac.ModelInputSchema(interest_earned_assets)}
+        return {"average_interest_paid_on_assets": trac.ModelInputSchema(interest_paid_assets),
+                "average_interest_earned_on_assets": trac.ModelInputSchema(interest_earned_assets)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
         net_interest_margin = trac.load_schema(schemas, "net_interest_margin.csv")
@@ -46,7 +46,7 @@ class NetInterestMarginDataModel(trac.TracModel):
         # expected_base_rate = ctx.get_parameter("expected_base_rate")
         # expected_employee_cost_change = ctx.get_parameter("expected_employee_cost_change")
 
-        interest_paid_assets = ctx.get_pandas_table("interest_paid_assets")
+        interest_paid_assets = ctx.get_pandas_table("average_interest_paid_on_assets")
         # interest_earned_assets = ctx.get_pandas_table("interest_earned_assets")
 
         # dummy computations
