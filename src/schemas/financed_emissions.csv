@@ -5,4 +5,4 @@ product_line, STRING, Customer account ID, false, true
 region, STRING, Customer account ID, false, true
 subregion, STRING, Customer account ID, false, true
 mortgage_type, STRING, Customer account ID, false, true
-financed_emissions, DECIMAL, Customer account ID, false, false
+financed_emissions, FLOAT, Customer account ID, false, false
