@@ -5,4 +5,4 @@ product_line, STRING, Customer account ID, false, true
 region, STRING, Customer account ID, false, true
 subregion, STRING, Customer account ID, false, true
 mortgage_type, STRING, Customer account ID, false, true
-average_net_interest_margin, DECIMAL, Customer account ID, false, false
+average_net_interest_margin, FLOAT, Customer account ID, false, false
