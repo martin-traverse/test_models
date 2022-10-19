@@ -1,0 +1,186 @@
+{
+  "nodes": {
+    "calculate_pd": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "economic_scenario",
+          "balance_forecast"
+        ],
+        "outputs": [
+          "pd_forecast"
+        ]
+      }
+    },
+    "calculate_ead": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "ead_model_parameters",
+          "balance_forecast"
+        ],
+        "outputs": [
+          "ead_forecast"
+        ]
+      }
+    },
+    "calculate_lgd": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "lgd_model_parameters",
+          "ead_forecast"
+        ],
+        "outputs": [
+          "lgd_forecast"
+        ]
+      }
+    },
+    "calculate_impairment": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "pd_forecast",
+          "lgd_forecast"
+        ],
+        "outputs": [
+          "impairment_forecast"
+        ]
+      }
+    },
+    "calculate_impairment_mi": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "impairment_forecast"
+        ],
+        "outputs": [
+          "impairment_mi"
+        ]
+      }
+    },
+    "economic_scenario": {
+      "nodeType": "INPUT_NODE"
+    },
+    "balance_forecast": {
+      "nodeType": "INPUT_NODE"
+    },
+    "ead_model_parameters": {
+      "nodeType": "INPUT_NODE"
+    },
+    "lgd_model_parameters": {
+      "nodeType": "INPUT_NODE"
+    },
+    "impairment_forecast": {
+      "nodeType": "OUTPUT_NODE"
+    },
+    "impairment_mi": {
+      "nodeType": "OUTPUT_NODE"
+    }
+  },
+  "edges": [
+    {
+      "source": {
+        "node": "economic_scenario"
+      },
+      "target": {
+        "node": "calculate_pd",
+        "socket": "economic_scenario"
+      }
+    },
+    {
+      "source": {
+        "node": "balance_forecast"
+      },
+      "target": {
+        "node": "calculate_pd",
+        "socket": "balance_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "balance_forecast"
+      },
+      "target": {
+        "node": "calculate_ead",
+        "socket": "balance_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "ead_model_parameters"
+      },
+      "target": {
+        "node": "calculate_ead",
+        "socket": "ead_model_parameters"
+      }
+    },
+    {
+      "source": {
+        "node": "lgd_model_parameters"
+      },
+      "target": {
+        "node": "calculate_lgd",
+        "socket": "lgd_model_parameters"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_ead",
+        "socket": "ead_forecast"
+      },
+      "target": {
+        "node": "calculate_lgd",
+        "socket": "ead_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_lgd",
+        "socket": "lgd_forecast"
+      },
+      "target": {
+        "node": "calculate_impairment",
+        "socket": "lgd_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_pd",
+        "socket": "pd_forecast"
+      },
+      "target": {
+        "node": "calculate_impairment",
+        "socket": "pd_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_impairment",
+        "socket": "impairment_forecast"
+      },
+      "target": {
+        "node": "impairment_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_impairment",
+        "socket": "impairment_forecast"
+      },
+      "target": {
+        "node": "calculate_impairment_mi",
+        "socket": "impairment_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_impairment_mi",
+        "socket": "impairment_mi"
+      },
+      "target": {
+        "node": "impairment_mi"
+      }
+    }
+  ]
+}

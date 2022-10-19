@@ -1,0 +1,6 @@
+{
+  "key": "calculate_lgd",
+  "name": "Calculate account LGD",
+  "description": "Calculate account LGD",
+  "business_segments": ["RETAIL", "MORTGAGE", "LGD"]
+}

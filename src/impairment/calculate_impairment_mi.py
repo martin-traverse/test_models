@@ -17,7 +17,7 @@ import typing as tp
 import impairment.schemas as schemas
 
 
-class CalculateMI(trac.TracModel):
+class CalculateImpairmentMI(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
         return trac.declare_parameters()
@@ -49,4 +49,4 @@ class CalculateMI(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(CalculateMI, "config/calculate_mi.yaml", "config/sys_config.yaml")
+    launch.launch_model(CalculateImpairmentMI, "config/calculate_impairment_mi.yaml", "config/sys_config.yaml")

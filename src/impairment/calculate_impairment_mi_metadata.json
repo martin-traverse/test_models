@@ -1,0 +1,6 @@
+{
+  "key": "calculate_impairment_mi",
+  "name": "Calculate summary impairment report",
+  "description": "Calculate summary impairment report",
+  "business_segments": ["RETAIL", "MORTGAGE"]
+}

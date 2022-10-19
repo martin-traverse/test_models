@@ -1,0 +1,6 @@
+{
+  "key": "calculate_impairment",
+  "name": "Calculate account impairment",
+  "description": "Calculate account impairment",
+  "business_segments": ["RETAIL", "MORTGAGE", "IMPAIRMENT"]
+}
