@@ -1,10 +1,10 @@
 name,variable,value
-Legal costs, legal_costs, 1400
-Time from default to possession, time_from_default_to_possession, 6
-Time from repossession to sale, time_from_possession_to_sale, 3
-Minimum interest rate for LGD,min_lgd_interest_rate, 0.1
-Forced sale discount (DTV < 30%,fsd_less_than_30, 0.1
-Forced sale discount (30 >= DTV < 60%,fsd_30_to_60, 0.2
-Forced sale discount (60 >= DTV < 80%,fsd_60_to_80, 0.25
-Forced sale discount (80 >= DTV < 90%,fsd_80_to_90, 0.30
-Forced sale discount (DTV > 90%,fsd_greater_than_90, 0.5
+Legal costs,legal_costs,1400
+Time from default to possession,time_from_default_to_possession,6
+Time from repossession to sale,time_from_possession_to_sale,3
+Minimum interest rate for LGD,min_lgd_interest_rate,0.1
+Forced sale discount (DTV < 30%,fsd_less_than_30,0.1
+Forced sale discount (30 >= DTV < 60%,fsd_30_to_60,0.2
+Forced sale discount (60 >= DTV < 80%,fsd_60_to_80,0.25
+Forced sale discount (80 >= DTV < 90%,fsd_80_to_90,0.30
+Forced sale discount (DTV > 90%,fsd_greater_than_90,0.5

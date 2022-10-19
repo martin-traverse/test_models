@@ -25,9 +25,9 @@ class CalculateEad(trac.TracModel):
         return trac.declare_parameters(
 
             trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast",
-                   default_value=datetime.datetime(2021, 1, 1).date()),
+                   default_value=datetime.datetime(2022, 1, 1).date()),
             trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast",
-                   default_value=datetime.datetime(2021, 12, 1).date()),
+                   default_value=datetime.datetime(2025, 12, 1).date())
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:

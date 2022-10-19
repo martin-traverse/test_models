@@ -1,4 +1,4 @@
 field_name, field_type, label, categorical, business_key, format_code
 name, STRING, Name, false, false
 variable, STRING, Variable, false, false
-value, FLOAT, Value, false, false,",|.|4||"
+value, FLOAT, Value, false, false,",|.|2||"
