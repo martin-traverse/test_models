@@ -1,5 +1,5 @@
 field_name, field_type, label, categorical, business_key, format_code
-observation_date, DATE, Date, true, false, MONTH
+observation_date, DATE, Date, false, false, MONTH
 unemployment_rate, FLOAT, Unemployment rate, false, false,",|.|2||%"
-disposable_income_growth, FLOAT, Disposable income growth (QoQ), false, true,"|.|2||%"
-riksbank_policy_rate, FLOAT, Riksbank policy rate, false, true,",|.|2||%"
+disposable_income_growth, FLOAT, Disposable income growth (QoQ), false, false,"|.|2||%"
+riksbank_policy_rate, FLOAT, Riksbank policy rate, false, false,",|.|2||%"
