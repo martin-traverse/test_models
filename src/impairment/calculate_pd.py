@@ -16,6 +16,7 @@ import tracdap.rt.api as trac
 import typing as tp
 import random
 import impairment.schemas as schemas
+import datetime
 
 
 class CalculatePd(trac.TracModel):
@@ -24,9 +25,9 @@ class CalculatePd(trac.TracModel):
         return trac.declare_parameters(
 
             trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast",
-                   default_value="2021-01-01"),
+                   default_value=datetime.datetime(2021, 1, 1).date()),
             trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast",
-                   default_value="2021-12-01"),
+                   default_value=datetime.datetime(2021, 12, 1).date())
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
