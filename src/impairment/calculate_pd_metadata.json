@@ -1,0 +1,6 @@
+{
+  "key": "calculate_pd",
+  "name": "Calculate segment PDs",
+  "description": "Calculate segment PDs",
+  "business_segments": ["RETAIL", "MORTGAGE", "PD"]
+}

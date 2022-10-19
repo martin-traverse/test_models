@@ -1,0 +1,12 @@
+
+job:
+  runModel:
+    parameters:
+      expected_base_rate: 1
+      expected_employee_cost_change: 0.0
+
+    inputs:
+      average_interest_earning_assets: "inputs/average_interest_earning_assets.csv"
+
+    outputs:
+      financed_emissions: "outputs/financed_emissions.csv"

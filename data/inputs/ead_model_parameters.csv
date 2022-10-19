@@ -1,0 +1,7 @@
+name,variable,value
+Legal costs, legal_costs, 400
+Minimum interest rate for EAD,min_ead_interest_rate, 0.05
+Time to default (MIA 0),ttd_mia_0, 3
+Time to default (MIA 1),ttd_mia_1, 2
+Time to default (MIA 2),ttd_mia_2, 1
+Time to default (MIA 3+),ttd_mia_3plus, 0

@@ -1,0 +1,6 @@
+{
+  "key": "calculate_ead",
+  "name": "Calculate account EAD",
+  "description": "Calculate account EAD",
+  "business_segments": ["RETAIL", "MORTGAGE", "EAD"]
+}

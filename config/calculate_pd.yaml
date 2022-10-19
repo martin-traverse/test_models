@@ -1,0 +1,13 @@
+
+job:
+  runModel:
+    parameters:
+      first_forecast_month: "2021-01-01"
+      last_forecast_month: "2021-12-01"
+
+    inputs:
+      economic_scenario: "inputs/economic_scenario.csv"
+      balance_forecast: "inputs/balance_forecast.csv"
+
+    outputs:
+      pd_forecast: "outputs/pd_forecast.csv"

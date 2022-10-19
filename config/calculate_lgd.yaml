@@ -1,0 +1,13 @@
+
+job:
+  runModel:
+    parameters:
+      first_forecast_month: "2021-01-01"
+      last_forecast_month: "2021-12-01"
+
+    inputs:
+      lgd_model_parameters: "inputs/lgd_model_parameters.csv"
+      ead_forecast: "outputs/ead_forecast.csv"
+
+    outputs:
+      lgd_forecast: "outputs/lgd_forecast.csv"
