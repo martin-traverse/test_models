@@ -16,6 +16,7 @@ import tracdap.rt.api as trac
 import typing as tp
 import random
 import impairment.schemas as schemas
+import datetime
 
 
 class CalculateEad(trac.TracModel):
@@ -24,9 +25,9 @@ class CalculateEad(trac.TracModel):
         return trac.declare_parameters(
 
             trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast",
-                   default_value="2021-01-01"),
+                   default_value=datetime.datetime(2021, 1, 1).date()),
             trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast",
-                   default_value="2021-12-01")
+                   default_value=datetime.datetime(2021, 12, 1).date()),
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
@@ -42,7 +43,7 @@ class CalculateEad(trac.TracModel):
         return {"ead_forecast": trac.ModelOutputSchema(ead_forecast_schema)}
 
     def run_model(self, ctx: trac.TracContext):
-        ead_model_parameters = ctx.get_pandas_table("ead_model_parameters")
+        # ead_model_parameters = ctx.get_pandas_table("ead_model_parameters")
         balance_forecast = ctx.get_pandas_table("balance_forecast")
 
         ead_forecast = balance_forecast.copy()
