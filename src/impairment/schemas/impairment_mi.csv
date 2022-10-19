@@ -1,4 +1,5 @@
 field_name, field_type, label, categorical, business_key, format_code
+date, DATE, Date, false, true, "QUARTER"
 business_line, STRING, Business line, false, true
 product_line, STRING, Product line, false, true
 region, STRING, Region, false, true
