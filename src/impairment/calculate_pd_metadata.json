@@ -1,6 +1,6 @@
 {
   "key": "calculate_pd",
-  "name": "Calculate segment PDs",
+  "name": "Calculate segment PDs - in governance",
   "description": "Calculate segment PDs",
   "business_segments": ["RETAIL", "MORTGAGE", "PD"]
 }

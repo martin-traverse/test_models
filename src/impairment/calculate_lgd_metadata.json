@@ -1,6 +1,6 @@
 {
   "key": "calculate_lgd",
-  "name": "Calculate account LGD",
+  "name": "Calculate account LGD - in governance",
   "description": "Calculate account LGD",
   "business_segments": ["RETAIL", "MORTGAGE", "LGD"]
 }
