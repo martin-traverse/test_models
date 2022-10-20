@@ -62,7 +62,9 @@ class CalculatePd(trac.TracModel):
         pd_forecast = mortgage_book_t0.drop("date", axis=1).join(dates, how="cross")
 
         pd_forecast["pd_lifetime"] = pd_forecast["pd_12m"] * random.randint(10, 15) / 10
-
+        pd_forecast["pd_lifetime_max"] = 1
+        pd_forecast["pd_lifetime"] = pd_forecast[['pd_lifetime', 'pd_lifetime_max']].min(axis=1)
+        pd_forecast.drop(["pd_lifetime_max"], inplace=True, axis=1)
         pd_forecast = pd_forecast.drop(["valuation", "dtv", "balance", "monthly_repayment", "months_in_arrears", "in_default"], axis=1)
 
         # Output the dataset
