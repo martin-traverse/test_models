@@ -3,3 +3,4 @@ observation_date, DATE, Date, false, false, MONTH
 unemployment_rate, FLOAT, Unemployment rate, false, false,",|.|2||%"
 disposable_income_growth, FLOAT, Disposable income growth (QoQ), false, false,"|.|2||%"
 riksbank_policy_rate, FLOAT, Riksbank policy rate, false, false,",|.|2||%"
+nominal_hpi, FLOAT, Sweden HPI (nominal), false, false,"|.|1||"
