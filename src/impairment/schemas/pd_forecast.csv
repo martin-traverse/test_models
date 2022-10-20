@@ -6,6 +6,5 @@ product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
 subregion, STRING, Sub-region, true, false
 mortgage_type, STRING, Mortgage type, true, false
-balance, FLOAT, Drawn balance, false, false,",|.|2||EUR"
 pd_12m, FLOAT, PD (12m), false, false,",|.|4||%"
 pd_lifetime, FLOAT, PD (lifetime), false, false,",|.|4||%"

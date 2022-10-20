@@ -42,7 +42,7 @@ class CalculateImpairmentMI(trac.TracModel):
 
         impairment_mi = impairment_mi.sort_values(by=group_by_list, ascending=True)
 
-        # Output the dataset 
+        # Output the dataset
         ctx.put_pandas_table("impairment_mi", impairment_mi)
 
 

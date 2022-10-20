@@ -38,8 +38,8 @@ class CalculateImpairment(trac.TracModel):
         pd_forecast = ctx.get_pandas_table("pd_forecast")
         lgd_forecast = ctx.get_pandas_table("lgd_forecast")
 
-        impairment_forecast = lgd_forecast.merge(pd_forecast[["id", "pd_12m", "pd_lifetime"]], on='id')
-        impairment_forecast["ecl_12m"] =   impairment_forecast["ead"] * impairment_forecast["pd_12m"]* impairment_forecast["lgd_12m"]
+        impairment_forecast = lgd_forecast.merge(pd_forecast[["id", "date", "pd_12m", "pd_lifetime"]], on=['id', "date"])
+        impairment_forecast["ecl_12m"] = impairment_forecast["ead"] * impairment_forecast["pd_12m"]* impairment_forecast["lgd_12m"]
         impairment_forecast["ecl_lifetime"] = impairment_forecast["ead"] * impairment_forecast["pd_lifetime"] * \
                                          impairment_forecast["lgd_lifetime"]
 

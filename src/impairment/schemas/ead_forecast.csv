@@ -6,6 +6,10 @@ product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
 subregion, STRING, Sub-region, true, false
 mortgage_type, STRING, Mortgage type, true, false
-balance, FLOAT, Drawn balance, false, false,",|.|2||EUR"
+valuation, FLOAT, Valuation, false, false,",|.|0|| EUR"
+dtv, FLOAT, Debt to value, false, false,",|.|1||%"
+balance, FLOAT, Drawn balance, false, false,",|.|2|| EUR"
+monthly_repayment, FLOAT, Monthly repayment, false, false,",|.|2|| EUR"
+months_in_arrears, INTEGER, Monthly repayment, false, false,"||0||"
 time_to_default, INTEGER, Time to default, false, false,"||0||"
-ead, FLOAT, EAD, false, false,",|.|2||EUR"
+ead, FLOAT, EAD, false, false,",|.|2|| EUR"

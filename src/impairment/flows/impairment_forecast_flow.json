@@ -5,7 +5,7 @@
       "modelStub": {
         "inputs": [
           "economic_scenario",
-          "balance_forecast"
+          "mortgage_book_t0"
         ],
         "outputs": [
           "pd_forecast"
@@ -17,7 +17,8 @@
       "modelStub": {
         "inputs": [
           "ead_model_parameters",
-          "balance_forecast"
+          "balance_forecast",
+          "mortgage_book_t0"
         ],
         "outputs": [
           "ead_forecast"
@@ -62,6 +63,9 @@
     "economic_scenario": {
       "nodeType": "INPUT_NODE"
     },
+    "mortgage_book_t0": {
+      "nodeType": "INPUT_NODE"
+    },
     "balance_forecast": {
       "nodeType": "INPUT_NODE"
     },
@@ -90,11 +94,11 @@
     },
     {
       "source": {
-        "node": "balance_forecast"
+        "node": "mortgage_book_t0"
       },
       "target": {
         "node": "calculate_pd",
-        "socket": "balance_forecast"
+        "socket": "mortgage_book_t0"
       }
     },
     {
@@ -104,6 +108,15 @@
       "target": {
         "node": "calculate_ead",
         "socket": "balance_forecast"
+      }
+    },
+        {
+      "source": {
+        "node": "mortgage_book_t0"
+      },
+      "target": {
+        "node": "calculate_ead",
+        "socket": "mortgage_book_t0"
       }
     },
     {
