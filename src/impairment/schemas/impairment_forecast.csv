@@ -1,15 +1,15 @@
 field_name, field_type, label, categorical, business_key, format_code
 id, STRING, Customer account ID, false, false
-date, DATE, Date, false, false, "QUARTER"
+date, DATE, Date, false, false, "MONTH"
 business_line, STRING, Business line, true, false
 product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
 subregion, STRING, Sub-region, true, false
 mortgage_type, STRING, Mortgage type, true, false
-valuation, FLOAT, Valuation, false, false,",|.|0|| EUR"
+valuation, FLOAT, Valuation, false, false,",|.|0|£|"
 dtv, FLOAT, Debt to value, false, false,",|.|1||%"
-balance, FLOAT, Drawn balance, false, false,",|.|2|| EUR"
-monthly_repayment, FLOAT, Monthly repayment, false, false,",|.|2|| EUR"
+balance, FLOAT, Drawn balance, false, false,",|.|2|£|"
+monthly_repayment, FLOAT, Monthly repayment, false, false,",|.|2|£|"
 months_in_arrears, INTEGER, Monthly repayment, false, false,"||0||"
 time_to_default, INTEGER, Time to default, false, false,"||0||"
 ead, FLOAT, EAD, false, false,",|.|2||EUR"
@@ -19,5 +19,5 @@ lgd_12m, FLOAT, LGD (12m), false, false,"|.|1||%"
 lgd_lifetime, FLOAT, LGD (lifetime), false, false,"|.|1||%"
 pd_12m, FLOAT, PD (12m), false, false,",|.|4||%"
 pd_lifetime, FLOAT, PD (lifetime), false, false,",|.|4||%"
-ecl_12m, FLOAT, ECL (12m), false, false,",|.|2|| EUR"
-ecl_lifetime, FLOAT, ECL (lifetime), false, false,",|.|2|| EUR"
+ecl_12m, FLOAT, ECL (12m), false, false,",|.|2|£|"
+ecl_lifetime, FLOAT, ECL (lifetime), false, false,",|.|2|£|"

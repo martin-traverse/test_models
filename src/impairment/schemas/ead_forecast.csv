@@ -1,6 +1,6 @@
 field_name, field_type, label, categorical, business_key, format_code
 id, STRING, Customer account ID, false, false
-date, DATE, Date, false, false, "QUARTER"
+date, DATE, Date, false, false, "MONTH"
 business_line, STRING, Business line, true, false
 product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
