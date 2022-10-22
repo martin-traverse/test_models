@@ -1,0 +1,26 @@
+id,date,business_line,product_line,loan_type,region,consulting_cost
+0,2017,Personal Banking,Loans,Mortgages,Denmark,-27187545.02538429
+1,2018,Personal Banking,Loans,Mortgages,Denmark,-23088771.96841204
+2,2019,Personal Banking,Loans,Mortgages,Denmark,-24165068.490566622
+3,2020,Personal Banking,Loans,Mortgages,Denmark,-18960511.335490346
+4,2021,Personal Banking,Loans,Mortgages,Denmark,-18075884.057007127
+5,2017,Personal Banking,Loans,Mortgages,Finland,-16875027.94679025
+6,2018,Personal Banking,Loans,Mortgages,Finland,-14330961.911428163
+7,2019,Personal Banking,Loans,Mortgages,Finland,-14999008.02862756
+8,2020,Personal Banking,Loans,Mortgages,Finland,-11768593.242718147
+9,2021,Personal Banking,Loans,Mortgages,Finland,-11219514.242280286
+10,2017,Personal Banking,Loans,Mortgages,Norway,-18750031.051989168
+11,2018,Personal Banking,Loans,Mortgages,Norway,-15923291.01269796
+12,2019,Personal Banking,Loans,Mortgages,Norway,-16665564.476252846
+13,2020,Personal Banking,Loans,Mortgages,Norway,-13076214.714131273
+14,2021,Personal Banking,Loans,Mortgages,Norway,-12466126.935866985
+15,2017,Personal Banking,Loans,Mortgages,Other regions,-4687507.762997292
+16,2018,Personal Banking,Loans,Mortgages,Other regions,-3980822.75317449
+17,2019,Personal Banking,Loans,Mortgages,Other regions,-4166391.1190632116
+18,2020,Personal Banking,Loans,Mortgages,Other regions,-3269053.6785328183
+19,2021,Personal Banking,Loans,Mortgages,Other regions,-3116531.7339667464
+20,2017,Personal Banking,Loans,Mortgages,Sweden,-26250043.472784832
+21,2018,Personal Banking,Loans,Mortgages,Sweden,-22292607.417777143
+22,2019,Personal Banking,Loans,Mortgages,Sweden,-23331790.266753983
+23,2020,Personal Banking,Loans,Mortgages,Sweden,-18306700.599783786
+24,2021,Personal Banking,Loans,Mortgages,Sweden,-17452577.710213777

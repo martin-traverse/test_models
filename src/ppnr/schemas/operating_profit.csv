@@ -1,0 +1,12 @@
+field_name, field_type, label, categorical, business_key, format_code
+id, STRING, ID, false, false
+business_line, STRING, Business line, true, false
+product_line, STRING, Product line, true, false
+region, STRING, Region, true, false
+net_interest_income, FLOAT, Net interest income, false, false,",|.|0||EUR"
+net_fee_commissions_income, FLOAT, Net fee commission income, false, false,",|.|0||EUR"
+staff_costs, FLOAT, Staff costs, false, false,",|.|0||EUR"
+other_expenses, FLOAT, Other expenses, false, false,",|.|0||EUR"
+total_operating_income, FLOAT, Total operating income, false, false,",|.|0||EUR"
+total_operating_expenses, FLOAT, Total operating expenses, false, false,",|.|0||EUR"
+profit_before_loan_losses, FLOAT, Profit before loan losses, false, false,",|.|0||EUR"

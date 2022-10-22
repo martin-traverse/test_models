@@ -1,0 +1,11 @@
+field_name, field_type, label, categorical, business_key, format_code
+id, STRING, ID, false, false
+date, INTEGER, Year, false, false, "||0||"
+business_line, STRING, Business line, true, false
+product_line, STRING, Product line, true, false
+loan_type, STRING, Loan type, true, false
+region, STRING, Region, true, false
+average_earner_interest_rate, FLOAT, Average earner interest rate, false, false, "|.|2||%"
+average_penalty_interest_rate, FLOAT, Average penalty interest rate, false, false, "|.|2||%"
+average_subsidies_rate, FLOAT, Average subsidies interest rate, false, false, "|.|2||%"
+interbank_rate, FLOAT, Interbank rate, false, false, "|.|2||%"

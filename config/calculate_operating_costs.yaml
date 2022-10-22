@@ -1,0 +1,15 @@
+
+job:
+  runModel:
+    parameters:
+      expected_base_rate: 1
+      expected_employee_cost_change: 0.0
+
+    inputs:
+      business_support_costs: "inputs/ppnr/business_support_costs.csv"
+      processing_costs: "inputs/ppnr/processing_costs.csv"
+      sales_and_marketing_costs: "inputs/ppnr/sales_and_marketing_costs.csv"
+      corporate_centre_costs: "inputs/ppnr/corporate_centre_costs.csv"
+
+    outputs:
+      operating_costs: "outputs/operating_costs.csv"

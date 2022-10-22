@@ -1,0 +1,26 @@
+id,date,business_line,product_line,loan_type,region,employee_costs,it_delivery_costs
+0,2017,Personal Banking,Loans,Mortgages,Denmark,-34354719.67149331,-40781317.53807643
+1,2018,Personal Banking,Loans,Mortgages,Denmark,-32065831.125509623,-34633157.95261805
+2,2019,Personal Banking,Loans,Mortgages,Denmark,-32269050.20202219,-36247602.73584993
+3,2020,Personal Banking,Loans,Mortgages,Denmark,-29434678.871715315,-28440767.00323552
+4,2021,Personal Banking,Loans,Mortgages,Denmark,-29509549.057798885,-27113826.085510682
+5,2017,Personal Banking,Loans,Mortgages,Finland,-21323619.106444124,-25312541.920185372
+6,2018,Personal Banking,Loans,Mortgages,Finland,-19902929.664109424,-21496442.867142238
+7,2019,Personal Banking,Loans,Mortgages,Finland,-20029065.642634466,-22498512.04294134
+8,2020,Personal Banking,Loans,Mortgages,Finland,-18269800.67899571,-17652889.86407722
+9,2021,Personal Banking,Loans,Mortgages,Finland,-18316271.82897862,-16829271.363420423
+10,2017,Personal Banking,Loans,Mortgages,Norway,-23692910.11827125,-28125046.577983744
+11,2018,Personal Banking,Loans,Mortgages,Norway,-22114366.293454915,-23884936.519046936
+12,2019,Personal Banking,Loans,Mortgages,Norway,-22254517.380704965,-24998346.714379266
+13,2020,Personal Banking,Loans,Mortgages,Norway,-20299778.532217454,-19614322.071196914
+14,2021,Personal Banking,Loans,Mortgages,Norway,-20351413.143309582,-18699190.403800476
+15,2017,Personal Banking,Loans,Mortgages,Other regions,-5923227.529567813,-7031261.644495936
+16,2018,Personal Banking,Loans,Mortgages,Other regions,-5528591.573363729,-5971234.129761734
+17,2019,Personal Banking,Loans,Mortgages,Other regions,-5563629.345176241,-6249586.6785948165
+18,2020,Personal Banking,Loans,Mortgages,Other regions,-5074944.633054364,-4903580.517799228
+19,2021,Personal Banking,Loans,Mortgages,Other regions,-5087853.2858273955,-4674797.600950119
+20,2017,Personal Banking,Loans,Mortgages,Sweden,-33170074.165579755,-39375065.20917725
+21,2018,Personal Banking,Loans,Mortgages,Sweden,-30960112.810836878,-33438911.126665708
+22,2019,Personal Banking,Loans,Mortgages,Sweden,-31156324.33298695,-34997685.40013098
+23,2020,Personal Banking,Loans,Mortgages,Sweden,-28419689.945104443,-27460050.899675675
+24,2021,Personal Banking,Loans,Mortgages,Sweden,-28491978.400633417,-26178866.56532066

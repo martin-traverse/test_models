@@ -1,0 +1,14 @@
+
+job:
+  runModel:
+    parameters:
+      expected_base_rate: 1
+      expected_employee_cost_change: 0.0
+
+    inputs:
+      average_interest_earning_assets: "inputs/ppnr/average_interest_earning_assets.csv"
+      net_interest_margin: "outputs/net_interest_margin.csv"
+      
+
+    outputs:
+      net_interest_income: "outputs/net_interest_income.csv"

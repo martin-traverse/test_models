@@ -1,0 +1,26 @@
+id,date,business_line,product_line,loan_type,region,average_balance,average_contracted_maturity,average_delinquent_balance,average_expected_contract_maturity,number_of_contracts,number_of_delinquent_contracts
+0,2017,Personal Banking,Loans,Mortgages,Denmark,4.37E+13,62.35,2.19E+11,59.856,145802.0571,729.0102857
+1,2018,Personal Banking,Loans,Mortgages,Denmark,4.02E+13,69.832,2.01E+11,57.362,133960.1143,669.8005714
+2,2019,Personal Banking,Loans,Mortgages,Denmark,3.86E+13,64.844,1.93E+11,57.362,128799.7714,643.9988571
+3,2020,Personal Banking,Loans,Mortgages,Denmark,4.04E+13,64.844,2.02E+11,54.868,134676,673.38
+4,2021,Personal Banking,Loans,Mortgages,Denmark,4.26E+13,59.856,2.13E+11,49.88,142158,710.79
+5,2017,Personal Banking,Loans,Mortgages,Finland,2.71E+13,38.7,1.36E+11,37.152,90497.82857,452.4891429
+6,2018,Personal Banking,Loans,Mortgages,Finland,2.49E+13,43.344,1.25E+11,35.604,83147.65714,415.7382857
+7,2019,Personal Banking,Loans,Mortgages,Finland,2.40E+13,40.248,1.20E+11,35.604,79944.68571,399.7234286
+8,2020,Personal Banking,Loans,Mortgages,Finland,2.51E+13,40.248,1.25E+11,34.056,83592,417.96
+9,2021,Personal Banking,Loans,Mortgages,Finland,2.65E+13,37.152,1.32E+11,30.96,88236,441.18
+10,2017,Personal Banking,Loans,Mortgages,Norway,3.02E+13,43,1.51E+11,41.28,100553.1429,502.7657143
+11,2018,Personal Banking,Loans,Mortgages,Norway,2.77E+13,48.16,1.39E+11,39.56,92386.28571,461.9314286
+12,2019,Personal Banking,Loans,Mortgages,Norway,2.66E+13,44.72,1.33E+11,39.56,88827.42857,444.1371429
+13,2020,Personal Banking,Loans,Mortgages,Norway,2.79E+13,44.72,1.39E+11,37.84,92880,464.4
+14,2021,Personal Banking,Loans,Mortgages,Norway,2.94E+13,41.28,1.47E+11,34.4,98040,490.2
+15,2017,Personal Banking,Loans,Mortgages,Other regions,7.54E+12,10.75,37707428571,10.32,25138.28571,125.6914286
+16,2018,Personal Banking,Loans,Mortgages,Other regions,6.93E+12,12.04,34644857143,9.89,23096.57143,115.4828571
+17,2019,Personal Banking,Loans,Mortgages,Other regions,6.66E+12,11.18,33310285714,9.89,22206.85714,111.0342857
+18,2020,Personal Banking,Loans,Mortgages,Other regions,6.97E+12,11.18,34830000000,9.46,23220,116.1
+19,2021,Personal Banking,Loans,Mortgages,Other regions,7.35E+12,10.32,36765000000,8.6,24510,122.55
+20,2017,Personal Banking,Loans,Mortgages,Sweden,4.22E+13,60.2,2.11E+11,57.792,140774.4,703.872
+21,2018,Personal Banking,Loans,Mortgages,Sweden,3.88E+13,67.424,1.94E+11,55.384,129340.8,646.704
+22,2019,Personal Banking,Loans,Mortgages,Sweden,3.73E+13,62.608,1.87E+11,55.384,124358.4,621.792
+23,2020,Personal Banking,Loans,Mortgages,Sweden,3.90E+13,62.608,1.95E+11,52.976,130032,650.16
+24,2021,Personal Banking,Loans,Mortgages,Sweden,4.12E+13,57.792,2.06E+11,48.16,137256,686.28

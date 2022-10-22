@@ -1,0 +1,6 @@
+field_name, field_type, label, categorical, business_key, format_code
+id, STRING, ID, false, false
+business_line, STRING, Business line, true, false
+product_line, STRING, Product line, true, false
+region, STRING, Region, true, false
+average_funding_interest_rate, FLOAT, Average funding interest rate, false, false, "|.|2||%"

@@ -1,0 +1,13 @@
+
+job:
+  runModel:
+    parameters:
+      expected_base_rate: 1
+      expected_employee_cost_change: 0.0
+
+    inputs:
+      investment_income: "inputs/ppnr/investment_income.csv"
+      fees_and_commissions_income: "inputs/ppnr/fees_and_commissions_income.csv"
+
+    outputs:
+      non_interest_income: "outputs/non_interest_income.csv"
