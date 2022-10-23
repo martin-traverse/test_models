@@ -1,0 +1,5 @@
+{
+  "key":"calculate_balance_forecast",
+  "name":"Calculate balance forecast & financed emissions",
+  "description":"Simple calculator to construct segment balance projections, based on T0 balances, projected roll-off and new flows"
+}
