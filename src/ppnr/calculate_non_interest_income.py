@@ -15,7 +15,7 @@
 
 import typing as tp
 import tracdap.rt.api as trac
-import schemas as schemas
+import ppnr.schemas as schemas
 
 
 def calculate_non_interest_income(fees_and_commission_income):

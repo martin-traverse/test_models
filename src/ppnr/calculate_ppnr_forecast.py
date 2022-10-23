@@ -14,7 +14,7 @@
 
 import typing as tp
 import tracdap.rt.api as trac
-import schemas as schemas
+import ppnr.schemas as schemas
 
 
 def calculate_operating_profit(non_interest_income, operating_costs, net_interest_income):
