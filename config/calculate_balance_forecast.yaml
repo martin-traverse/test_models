@@ -1,0 +1,13 @@
+
+job:
+  runModel:
+    parameters:
+
+    inputs:
+      new_originations: "outputs/new_originations.csv"
+      portfolio_runoff: "outputs/portfolio_runoff.csv"
+      mortgage_book_t0: "inputs/ppnr/mortgage_book_t0.csv"
+
+    outputs:
+      balance_forecast: "outputs/balance_forecast.csv"
+      financed_emissions: "outputs/financed_emissions.csv"

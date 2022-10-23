@@ -8,7 +8,7 @@ job:
     inputs:
       ead_model_parameters: "inputs/ead_model_parameters.csv"
       balance_forecast: "inputs/balance_forecast.csv"
-      mortgage_book_t0: "inputs/mortgage_book_t0.csv"
+      mortgage_book_t0: "inputs/mortgage_book_t0_schema.csv"
 
     outputs:
       ead_forecast: "outputs/ead_forecast.csv"

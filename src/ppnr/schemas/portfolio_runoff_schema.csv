@@ -1,0 +1,7 @@
+field_name, field_type, label, categorical, business_key, format_code
+date, DATE, Date, false, false, "QUARTER"
+business_line, STRING, Business line, true, false
+mortgage_type, STRING, Mortgage type, true, false
+repayment_balance, FLOAT, Repayment balance, false, false,",|.|0|| EUR"
+prepayment_balance, FLOAT, Prepayment balance, false, false,",|.|0|| EUR"
+runoff_balance, FLOAT, Runoff balance, false, false,",|.|0|| EUR"

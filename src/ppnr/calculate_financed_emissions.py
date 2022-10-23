@@ -32,7 +32,7 @@ class FinancedEmissionsDataModel(trac.TracModel):
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        earning_assets = trac.load_schema(schemas, "average_interest_earned_on_assets.csv")
+        earning_assets = trac.load_schema(schemas, "customer_rates_schema.csv")
         return {"average_interest_earning_assets": trac.ModelInputSchema(earning_assets)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:

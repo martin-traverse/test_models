@@ -1,0 +1,9 @@
+field_name, field_type, label, categorical, business_key, format_code
+observation_date, DATE, Date, false, false, MONTH
+mortgage_lending_to_households,FLOAT, Mortgage length to households, false, false,",|.|0|SEK|m"
+share_of_market, FLOAT, Share of market, false, false,",|.|2||%"
+new_business_fixed_rate, FLOAT, % of new business that is fixed rate, false, false,",|.|1||%"
+new_business_floating_rate, FLOAT, % of new business that is floating rate, false, false,",|.|1||%"
+new_business_capped_rate, FLOAT, % of new business that is capped rate, false, false,",|.|1||%"
+new_business_interest_only, FLOAT, % of new business that is interest only, false, false,",|.|1||%"
+new_business_amortising, FLOAT, % of new business that is amortised (capital & interest), false, false,",|.|1||%"

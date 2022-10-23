@@ -1,5 +1,5 @@
 {
   "key":"calculate_net_interest_income",
   "name":"Calculate net interest income",
-  "description":"Calculate net interest income for Pre-provision Net Revenue (PPNR)"
+  "description":"Calculation of interest income/expense, at segment level, based on projected Balances, Customer rates and Cost of funding"
 }

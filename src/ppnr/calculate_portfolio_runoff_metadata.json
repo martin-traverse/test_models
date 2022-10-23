@@ -1,0 +1,5 @@
+{
+  "key":"calculate_portfolio_runoff",
+  "name":"Calculate portfolio runoff",
+  "description":"Model projecting segment-level roll-off, pre-payment and switching as function of external factors (mainly rates)"
+}

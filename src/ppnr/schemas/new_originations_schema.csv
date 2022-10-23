@@ -1,0 +1,9 @@
+field_name, field_type, label, categorical, business_key, format_code
+date, DATE, Date, false, false, "QUARTER"
+business_line, STRING, Business line, true, false
+new_fixed_rate_interest_only_balance, FLOAT, New fixed rate interest only balances, false, false,",|.|0|EUR|m"
+new_floating_rate_interest_only_balance, FLOAT, New floating rate interest only balances, false, false,",|.|0|EUR|m"
+new_capped_rate_interest_only_balance, FLOAT, New capped rate interest only balances, false, false,",|.|0|EUR|m"
+new_fixed_rate_amortising_balance, FLOAT, New fixed rate amortising balances, false, false,",|.|0|EUR|m"
+new_floating_rate_amortising_balance, FLOAT, New floating rate amortising balances, false, false,",|.|0|EUR|m"
+new_capped_rate_amortising_balance, FLOAT, New capped rate amortising balances, false, false,",|.|0|EUR|m"

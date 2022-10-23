@@ -1,0 +1,14 @@
+
+job:
+  runModel:
+    parameters:
+      first_forecast_month: "2021-01-01"
+      last_forecast_month: "2021-12-01"
+      base_rate_sensitivity_uplift: 1
+
+    inputs:
+      economic_scenario: "inputs/ppnr/economic_scenario.csv"
+      mortgage_book_t0: "inputs/ppnr/mortgage_book_t0.csv"
+
+    outputs:
+      portfolio_runoff: "outputs/portfolio_runoff.csv"

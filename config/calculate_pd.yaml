@@ -7,7 +7,7 @@ job:
 
     inputs:
       economic_scenario: "inputs/economic_scenario.csv"
-      mortgage_book_t0: "inputs/mortgage_book_t0.csv"
+      mortgage_book_t0: "inputs/mortgage_book_t0_schema.csv"
 
     outputs:
       pd_forecast: "outputs/pd_forecast.csv"

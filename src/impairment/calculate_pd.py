@@ -33,7 +33,7 @@ class CalculatePd(trac.TracModel):
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
         economic_scenario_schema = trac.load_schema(schemas, "economic_scenario.csv")
-        mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0.csv")
+        mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0_schema.csv")
 
         return {"economic_scenario": trac.ModelInputSchema(economic_scenario_schema),
                 "mortgage_book_t0": trac.ModelInputSchema(mortgage_book_t0_schema)}

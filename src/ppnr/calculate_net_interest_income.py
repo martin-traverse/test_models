@@ -14,20 +14,20 @@
 
 import typing as tp
 import tracdap.rt.api as trac
-import schemas as schemas
+import ppnr.schemas as schemas
 
 
-def calculate_net_interest_income(net_interest_margin, earning_assets):
-    average_balance = earning_assets["average_balance"]
-    average_net_interest_margin = net_interest_margin["average_net_interest_margin"]
-    net_interest_income = net_interest_margin.copy()
-    net_interest_income = net_interest_income.drop("average_net_interest_margin", axis=1)
-    # * 1.83/1000
-    net_interest_income["net_interest_income"] = average_balance * average_net_interest_margin
-    return net_interest_income
+def calculate_net_interest_income(interest_paid_assets, interest_earned_assets):
+    average_funding_interest_rate = interest_paid_assets["average_funding_interest_rate"]
+    average_earner_interest_rate = interest_earned_assets["average_earner_interest_rate"]
+    net_interest_margin = interest_earned_assets.copy()
+    net_interest_margin[
+        "average_net_interest_margin"] = average_funding_interest_rate - average_earner_interest_rate + 0.25
+    net_interest_margin = net_interest_margin.drop("average_earner_interest_rate", axis=1)
+    return net_interest_margin
 
 
-class NetInterestIncomeDataModel(trac.TracModel):
+class NetInterestMarginDataModel(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
         return trac.define_parameters(
@@ -42,32 +42,36 @@ class NetInterestIncomeDataModel(trac.TracModel):
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        earning_assets = trac.load_schema(schemas, "average_interest_earning_assets.csv")
-        net_interest_margin = trac.load_schema(schemas, "net_interest_margin.csv")
-        return {"average_interest_earning_assets": trac.ModelInputSchema(earning_assets),
-                "net_interest_margin": trac.ModelInputSchema(net_interest_margin)}
+        cost_of_funding_schema = trac.load_schema(schemas, "cost_of_funding_schema.csv")
+        customer_rates_schema = trac.load_schema(schemas, "customer_rates_schema.csv")
+        economic_scenario_schema = trac.load_schema(schemas, "economic_scenario_schema.csv")
+        return {
+            "cost_of_funding": trac.ModelInputSchema(cost_of_funding_schema),
+            "customer_rates": trac.ModelInputSchema(customer_rates_schema),
+            "economic_scenario": trac.ModelInputSchema(economic_scenario_schema),
+        }
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        net_interest_income = trac.load_schema(schemas, "net_interest_income.csv")
-        return {"net_interest_income": trac.ModelOutputSchema(net_interest_income)}
+        net_interest_income_schema = trac.load_schema(schemas, "net_interest_income_schema.csv")
+        return {"net_interest_income": trac.ModelOutputSchema(net_interest_income_schema)}
 
     def run_model(self, ctx: trac.TracContext):
-        ctx.log().info("Net Interest Income model is running...")
+        ctx.log().info("Net interest interest model is running...")
 
         # expected_base_rate = ctx.get_parameter("expected_base_rate")
         # expected_employee_cost_change = ctx.get_parameter("expected_employee_cost_change")
 
-        net_interest_margin = ctx.get_pandas_table("net_interest_margin")
-        earning_assets = ctx.get_pandas_table("average_interest_earning_assets")
+        cost_of_funding = ctx.get_pandas_table("cost_of_funding")
+        customer_rates = ctx.get_pandas_table("customer_rates")
 
         # dummy computations
-        net_interest_income = calculate_net_interest_income(net_interest_margin, earning_assets)
+        net_interest_income = calculate_net_interest_income(cost_of_funding, customer_rates)
 
-        net_interest_income.drop([ "date", "loan_type", "average_penalty_interest_rate", "average_subsidies_rate", "interbank_rate"], axis=1, inplace=True)
         ctx.put_pandas_table("net_interest_income", net_interest_income)
 
 
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(NetInterestIncomeDataModel, "config/calculate_net_interest_income.yaml", "config/sys_config.yaml")
+    launch.launch_model(NetInterestMarginDataModel, "config/calculate_net_interest_income.yaml",
+                        "config/sys_config.yaml")
