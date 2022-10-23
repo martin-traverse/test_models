@@ -1,8 +1,0 @@
-field_name, field_type, label, categorical, business_key, format_code
-id, STRING, ID, false, true
-business_line, STRING, Business line, false, true
-product_line, STRING, Product line, false, true
-region, STRING, Region, false, true
-subregion, STRING, Sub-region, false, true
-mortgage_type, STRING, Mortgage type, false, true
-financed_emissions, FLOAT, Financed emissions, false, false, ",|.|0||EUR"

@@ -1,5 +1,5 @@
 field_name, field_type, label, categorical, business_key, format_code
-id, STRING, ID, false, false
+id, INTEGER, ID, false, false
 date, INTEGER, Year, false, false, "||0||"
 business_line, STRING, Business line, true, false
 product_line, STRING, Product line, true, false
