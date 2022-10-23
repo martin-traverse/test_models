@@ -115,4 +115,4 @@ class PpnrForecastModel(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(PpnrForecastModel, "config/calculate_ppnr.yaml", "config/sys_config.yaml")
+    launch.launch_model(PpnrForecastModel, "config/calculate_ppnr_forecast.yaml", "config/sys_config.yaml")

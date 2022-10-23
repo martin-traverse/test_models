@@ -1,0 +1,274 @@
+{
+  "nodes": {
+    "calculate_net_interest_margin": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "average_interest_earned_on_assets",
+          "average_interest_paid_on_assets"
+        ],
+        "outputs": [
+          "net_interest_margin"
+        ]
+      }
+    },
+    "calculate_net_interest_income": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "net_interest_margin",
+          "average_interest_earning_assets"
+        ],
+        "outputs": [
+          "net_interest_income"
+        ]
+      }
+    },
+    "calculate_financed_emissions": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "average_interest_earning_assets"
+        ],
+        "outputs": [
+          "financed_emissions"
+        ]
+      }
+    },
+    "calculate_non_interest_income": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "fees_and_commissions_income",
+          "investment_income"
+        ],
+        "outputs": [
+          "non_interest_income"
+        ]
+      }
+    },
+    "calculate_operating_costs": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "processing_costs",
+          "sales_and_marketing_costs",
+          "business_support_costs",
+          "corporate_centre_costs"
+        ],
+        "outputs": [
+          "operating_costs"
+        ]
+      }
+    },
+    "calculate_operating_profit": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "operating_costs",
+          "net_interest_income",
+          "non_interest_income"
+        ],
+        "outputs": [
+          "operating_profit",
+          "total_income"
+        ]
+      }
+    },
+    "average_interest_earned_on_assets": {
+      "nodeType": "INPUT_NODE"
+    },
+    "average_interest_paid_on_assets": {
+      "nodeType": "INPUT_NODE"
+    },
+    "average_interest_earning_assets": {
+      "nodeType": "INPUT_NODE"
+    },
+    "fees_and_commissions_income": {
+      "nodeType": "INPUT_NODE"
+    },
+    "processing_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "sales_and_marketing_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "business_support_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "corporate_centre_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "investment_income": {
+      "nodeType": "INPUT_NODE"
+    },
+    "financed_emissions": {
+      "nodeType": "OUTPUT_NODE"
+    },
+    "total_income": {
+      "nodeType": "OUTPUT_NODE"
+    },
+    "operating_profit": {
+      "nodeType": "OUTPUT_NODE"
+    }
+  },
+  "edges": [
+    {
+      "source": {
+        "node": "average_interest_earned_on_assets"
+      },
+      "target": {
+        "node": "calculate_net_interest_margin",
+        "socket": "average_interest_earned_on_assets"
+      }
+    },
+    {
+      "source": {
+        "node": "average_interest_paid_on_assets"
+      },
+      "target": {
+        "node": "calculate_net_interest_margin",
+        "socket": "average_interest_paid_on_assets"
+      }
+    },
+    {
+      "source": {
+        "node": "average_interest_earning_assets"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "average_interest_earning_assets"
+      }
+    },
+    {
+      "source": {
+        "node": "average_interest_earning_assets"
+      },
+      "target": {
+        "node": "calculate_financed_emissions",
+        "socket": "average_interest_earning_assets"
+      }
+    },
+    {
+      "source": {
+        "node": "fees_and_commissions_income"
+      },
+      "target": {
+        "node": "calculate_non_interest_income",
+        "socket": "fees_and_commissions_income"
+      }
+    },
+    {
+      "source": {
+        "node": "investment_income"
+      },
+      "target": {
+        "node": "calculate_non_interest_income",
+        "socket": "investment_income"
+      }
+    },
+    {
+      "source": {
+        "node": "processing_costs"
+      },
+      "target": {
+        "node": "calculate_operating_costs",
+        "socket": "processing_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "sales_and_marketing_costs"
+      },
+      "target": {
+        "node": "calculate_operating_costs",
+        "socket": "sales_and_marketing_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "business_support_costs"
+      },
+      "target": {
+        "node": "calculate_operating_costs",
+        "socket": "business_support_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "corporate_centre_costs"
+      },
+      "target": {
+        "node": "calculate_operating_costs",
+        "socket": "corporate_centre_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_operating_profit",
+        "socket": "operating_profit"
+      },
+      "target": {
+        "node": "operating_profit"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_operating_profit",
+        "socket": "total_income"
+      },
+      "target": {
+        "node": "total_income"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_financed_emissions",
+        "socket": "financed_emissions"
+      },
+      "target": {
+        "node": "financed_emissions"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_net_interest_margin",
+        "socket": "net_interest_margin"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "net_interest_margin"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_operating_costs",
+        "socket": "operating_costs"
+      },
+      "target": {
+        "node": "calculate_operating_profit",
+        "socket": "operating_costs"
+      }
+    },
+     {
+      "source": {
+        "node": "calculate_net_interest_income",
+        "socket": "net_interest_income"
+      },
+      "target": {
+        "node": "calculate_operating_profit",
+        "socket": "net_interest_income"
+      }
+    },
+     {
+      "source": {
+        "node": "calculate_non_interest_income",
+        "socket": "non_interest_income"
+      },
+      "target": {
+        "node": "calculate_operating_profit",
+        "socket": "non_interest_income"
+      }
+    }
+  ]
+}

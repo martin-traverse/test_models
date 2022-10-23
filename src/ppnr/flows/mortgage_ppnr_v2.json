@@ -1,0 +1,332 @@
+{
+  "nodes": {
+    "calculate_portfolio_runoff": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "economic_scenario",
+          "mortgage_book_t0"
+        ],
+        "outputs": [
+          "portfolio_runoff"
+        ]
+      }
+    },
+    "calculate_new_originations": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "market_scenario"
+        ],
+        "outputs": [
+          "new_originations"
+        ]
+      }
+    },
+    "calculate_balance_forecast": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "new_originations",
+          "portfolio_runoff",
+          "mortgage_book_t0"
+        ],
+        "outputs": [
+          "balance_forecast",
+          "financed_emissions"
+        ]
+      }
+    },
+    "calculate_net_interest_income": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "cost_of_funding",
+          "customer_rates",
+          "economic_scenario",
+          "balance_forecast"
+        ],
+        "outputs": [
+          "net_interest_income"
+        ]
+      }
+    },
+    "calculate_non_interest_income": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "fees_and_commissions_income",
+          "investment_income",
+          "balance_forecast"
+        ],
+        "outputs": [
+          "non_interest_income"
+        ]
+      }
+    },
+    "calculate_forecast_ppnr": {
+      "nodeType": "MODEL_NODE",
+      "modelStub": {
+        "inputs": [
+          "business_support_costs",
+          "processing_costs",
+          "sales_and_marketing_costs",
+          "corporate_centre_costs",
+          "net_interest_income",
+          "non_interest_income"
+        ],
+        "outputs": [
+          "ppnr_forecast"
+        ]
+      }
+    },
+    "business_support_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "corporate_centre_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "costs_of_funding": {
+      "nodeType": "INPUT_NODE"
+    },
+    "customer_rates": {
+      "nodeType": "INPUT_NODE"
+    },
+    "economic_scenario": {
+      "nodeType": "INPUT_NODE"
+    },
+    "fees_and_commissions_income": {
+      "nodeType": "INPUT_NODE"
+    },
+    "investment_income": {
+      "nodeType": "INPUT_NODE"
+    },
+    "market_scenario": {
+      "nodeType": "INPUT_NODE"
+    },
+    "mortgage_book_t0": {
+      "nodeType": "INPUT_NODE"
+    },
+    "processing_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "sales_and_marketing_costs": {
+      "nodeType": "INPUT_NODE"
+    },
+    "financed_emissions": {
+      "nodeType": "OUTPUT_NODE"
+    },
+    "balance_forecast": {
+      "nodeType": "OUTPUT_NODE"
+    },
+    "ppnr_forecast": {
+      "nodeType": "OUTPUT_NODE"
+    }
+  },
+  "edges": [
+    {
+      "source": {
+        "node": "economic_scenario"
+      },
+      "target": {
+        "node": "calculate_portfolio_runoff",
+        "socket": "economic_scenario"
+      }
+    },
+    {
+      "source": {
+        "node": "mortgage_book_t0"
+      },
+      "target": {
+        "node": "calculate_portfolio_runoff",
+        "socket": "mortgage_book_t0"
+      }
+    },
+    {
+      "source": {
+        "node": "market_scenario"
+      },
+      "target": {
+        "node": "calculate_new_originations",
+        "socket": "market_scenario"
+      }
+    },
+    {
+      "source": {
+        "node": "mortgage_book_t0"
+      },
+      "target": {
+        "node": "calculate_balance_forecast",
+        "socket": "mortgage_book_t0"
+      }
+    },
+    {
+      "source": {
+        "node": "cost_of_funding"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "cost_of_funding"
+      }
+    },
+    {
+      "source": {
+        "node": "customer_rates"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "customer_rates"
+      }
+    },
+    {
+      "source": {
+        "node": "economic_scenario"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "economic_scenario"
+      }
+    },
+    {
+      "source": {
+        "node": "fees_and_commissions_income"
+      },
+      "target": {
+        "node": "calculate_non_interest_income",
+        "socket": "fees_and_commissions_income"
+      }
+    },
+    {
+      "source": {
+        "node": "investment_income"
+      },
+      "target": {
+        "node": "calculate_non_interest_income",
+        "socket": "investment_income"
+      }
+    },
+    {
+      "source": {
+        "node": "business_support_costs"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "business_support_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "processing_costs"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "processing_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "sales_and_marketing_costs"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "sales_and_marketing_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "corporate_centre_costs"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "corporate_centre_costs"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "ppnr_forecast"
+      },
+      "target": {
+        "node": "ppnr_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_balance_forecast",
+        "socket": "balance_forecast"
+      },
+      "target": {
+        "node": "balance_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_balance_forecast",
+        "socket": "financed_emissions"
+      },
+      "target": {
+        "node": "financed_emissions"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_portfolio_runoff",
+        "socket": "portfolio_runoff"
+      },
+      "target": {
+        "node": "calculate_balance_forecast",
+        "socket": "portfolio_runoff"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_new_originations",
+        "socket": "new_originations"
+      },
+      "target": {
+        "node": "calculate_balance_forecast",
+        "socket": "new_originations"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_balance_forecast",
+        "socket": "balance_forecast"
+      },
+      "target": {
+        "node": "calculate_net_interest_income",
+        "socket": "balance_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_balance_forecast",
+        "socket": "balance_forecast"
+      },
+      "target": {
+        "node": "calculate_non_interest_income",
+        "socket": "balance_forecast"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_net_interest_income",
+        "socket": "net_interest_income"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "net_interest_income"
+      }
+    },
+    {
+      "source": {
+        "node": "calculate_non_interest_income",
+        "socket": "non_interest_income"
+      },
+      "target": {
+        "node": "calculate_forecast_ppnr",
+        "socket": "non_interest_income"
+      }
+    }
+  ]
+}
