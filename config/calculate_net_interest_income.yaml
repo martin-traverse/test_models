@@ -2,8 +2,6 @@
 job:
   runModel:
     parameters:
-      expected_base_rate: 1
-      expected_employee_cost_change: 0.0
 
     inputs:
       cost_of_funding: "inputs/ppnr/cost_of_funding.csv"

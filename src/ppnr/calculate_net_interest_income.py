@@ -39,16 +39,7 @@ def calculate_net_interest_income(net_interest_margin, earning_assets):
 class NetInterestMarginDataModel(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
-        return trac.define_parameters(
-
-            trac.P("expected_base_rate", trac.FLOAT,
-                   label="Expected base rate",
-                   default_value=1.0),
-
-            trac.P("expected_employee_cost_change", trac.FLOAT,
-                   label="Expected employee cost growth",
-                   default_value=0.0)
-        )
+        return trac.define_parameters()
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
         cost_of_funding_schema = trac.load_schema(schemas, "cost_of_funding_schema.csv")
