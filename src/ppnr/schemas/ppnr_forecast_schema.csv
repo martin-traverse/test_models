@@ -1,0 +1,10 @@
+field_name, field_type, label, categorical, business_key, format_code
+date, DATE, Date, false, false, MONTH
+business_line, STRING, Business line, true, false
+region, STRING, Region, true, false
+mortgage_type, STRING, Mortgage type, true, false
+net_interest_income, FLOAT, Net interest income, false, false, ",|.|2||EUR"
+non_interest_income, FLOAT, Net non interest income, false, false, ",|.|0||EUR"
+total_operating_income, FLOAT, Total operating income, false, false,",|.|0||EUR"
+total_operating_expenses, FLOAT, Total operating expenses, false, false,",|.|0||EUR"
+pre_provision_net_revenue, FLOAT, Pre-provision net revenue, false, false,",|.|0||EUR"

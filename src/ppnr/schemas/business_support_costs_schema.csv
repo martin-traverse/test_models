@@ -1,6 +1,7 @@
 field_name, field_type, label, categorical, business_key, format_code
-id, STRING, ID, true, false
+id, STRING, ID, false, false
+date, INTEGER, Year, false, false, "||0||"
 business_line, STRING, Business line, true, false
 product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
-net_interest_income, FLOAT, Net interest income, false, false, ",|.|2||EUR"
+consulting_cost, FLOAT, Consulting costs, false, false,",|.|0||EUR"

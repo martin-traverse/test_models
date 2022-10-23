@@ -9,6 +9,7 @@ job:
       cost_of_funding: "inputs/ppnr/cost_of_funding.csv"
       customer_rates: "inputs/ppnr/customer_rates.csv"
       economic_scenario: "inputs/ppnr/economic_scenario.csv"
+      balance_forecast: "outputs/balance_forecast.csv"
 
     outputs:
       net_interest_income: "outputs/net_interest_income.csv"

@@ -3,5 +3,6 @@ date, DATE, Date, false, false, MONTH
 business_line, STRING, Business line, true, false
 region, STRING, Region, true, false
 mortgage_type, STRING, Mortgage type, true, false
-average_net_interest_margin, FLOAT, Average net interest margin, false, false, "|.|2||%"
-net_interest_income, FLOAT, Net interest income, false, false, ",|.|2||EUR"
+non_interest_income, FLOAT, Net non interest income, false, false, ",|.|0||EUR"
+balance, FLOAT, Balance, false, false, ",|.|0||EUR"
+balance_across_segments, FLOAT, Total balance across segments, false, false, ",|.|0||EUR"

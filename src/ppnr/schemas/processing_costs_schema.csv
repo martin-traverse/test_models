@@ -1,7 +1,8 @@
 field_name, field_type, label, categorical, business_key, format_code
 id, STRING, ID, false, false
+date, INTEGER, Year, false, false, "||0||"
 business_line, STRING, Business line, true, false
 product_line, STRING, Product line, true, false
 region, STRING, Region, true, false
-other_expenses, FLOAT, Other expenses, false, false,",|.|0||EUR"
-staff_costs, FLOAT, Staff costs, false, false,",|.|0||EUR"
+it_delivery_costs, FLOAT, IT delivery costs, false, false,",|.|0||EUR"
+employee_costs, FLOAT, Employee costs, false, false,",|.|0||EUR"

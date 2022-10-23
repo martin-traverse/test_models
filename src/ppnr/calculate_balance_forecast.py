@@ -46,7 +46,7 @@ class BalanceForecastModel(trac.TracModel):
         portfolio_runoff = ctx.get_pandas_table("portfolio_runoff")
         new_originations = ctx.get_pandas_table("new_originations")
 
-        mortgage_book_t0 = mortgage_book_t0[['business_line', "mortgage_type", "date", "balance"]]
+        mortgage_book_t0 = mortgage_book_t0[['business_line', "mortgage_type", "region", "date", "balance"]]
         mortgage_book_t0["date"] = mortgage_book_t0["date"].apply(lambda x: x.replace(day=1))
         portfolio_runoff["date"] = portfolio_runoff["date"].apply(lambda x: x.replace(day=1))
         new_originations["date"] = new_originations["date"].apply(lambda x: x.replace(day=1))
@@ -75,7 +75,7 @@ class BalanceForecastModel(trac.TracModel):
         balance_flows["cumulative_net_balance_flow"] = balance_flows.groupby(["mortgage_type"])[
             "net_balance_flow"].cumsum()
 
-        group_by_list = ["mortgage_type"]
+        group_by_list = ["mortgage_type", "region"]
 
         mortgage_book_t0 = (mortgage_book_t0.groupby(group_by_list, as_index=False).agg({'balance': 'sum'}).rename(
             columns={'balance': 'balance_at_start'}))
@@ -86,7 +86,7 @@ class BalanceForecastModel(trac.TracModel):
             "cumulative_net_balance_flow"]
 
         balance_forecast = balance_forecast[
-            ["date", "business_line", "mortgage_type", "net_balance_flow", "cumulative_net_balance_flow", "balance"]]
+            ["date", "business_line", "region", "mortgage_type", "net_balance_flow", "cumulative_net_balance_flow", "balance"]]
 
         ctx.put_pandas_table("balance_forecast", balance_forecast)
         ctx.put_pandas_table("financed_emissions", balance_forecast)

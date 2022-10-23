@@ -31,45 +31,51 @@ def calculate_non_interest_income(fees_and_commission_income):
     return non_interest_income
 
 
-class NonInterestIncomeDataModel(trac.TracModel):
+class NonInterestIncomeModel(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
-        return trac.define_parameters(
-
-            trac.P("expected_base_rate", trac.FLOAT,
-                   label="Expected base rate",
-                   default_value=1.0),
-
-            trac.P("expected_employee_cost_change", trac.FLOAT,
-                   label="Expected employee cost growth",
-                   default_value=0.0)
-        )
+        return trac.define_parameters()
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        investment_income = trac.load_schema(schemas, "investment_income.csv")
-        fees_and_commissions_income = trac.load_schema(schemas, "fees_and_commissions_income.csv")
-        return {"investment_income": trac.ModelInputSchema(investment_income),
-                "fees_and_commissions_income": trac.ModelInputSchema(fees_and_commissions_income)}
+        balance_forecast_schema = trac.load_schema(schemas, "balance_forecast_schema.csv")
+        investment_income = trac.load_schema(schemas, "investment_income_schema.csv")
+        fees_and_commissions_income = trac.load_schema(schemas, "fees_and_commissions_income_schema.csv")
+        return {
+            "balance_forecast": trac.ModelInputSchema(balance_forecast_schema),
+            "investment_income": trac.ModelInputSchema(investment_income),
+            "fees_and_commissions_income": trac.ModelInputSchema(fees_and_commissions_income)
+        }
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        non_interest_income = trac.load_schema(schemas, "non_interest_income.csv")
+        non_interest_income = trac.load_schema(schemas, "non_interest_income_schema.csv")
         return {"non_interest_income": trac.ModelOutputSchema(non_interest_income)}
 
     def run_model(self, ctx: trac.TracContext):
         ctx.log().info("Net interest margin model is running...")
 
-        # expected_base_rate = ctx.get_parameter("expected_base_rate")
-        # expected_employee_cost_change = ctx.get_parameter("expected_employee_cost_change")
-
         # investment_income = ctx.get_pandas_table("investment_income")
         fees_and_commissions_income = ctx.get_pandas_table("fees_and_commissions_income")
+        balance_forecast = ctx.get_pandas_table("balance_forecast")
 
-        non_interest_income = calculate_non_interest_income(fees_and_commissions_income)
+        non_interest_income = fees_and_commissions_income[(fees_and_commissions_income['date'] == 2021) & (fees_and_commissions_income['region'].str.upper() == "SWEDEN")]
+
+        non_interest_income = calculate_non_interest_income(non_interest_income)
+
+        non_interest_income = balance_forecast.merge(non_interest_income[["net_fee_commissions_income"]], how="cross")
+
+        sum_data = non_interest_income[["date", "balance"]].groupby("date")["balance"].sum().reset_index(name='balance_across_segments')
+
+        non_interest_income = non_interest_income.merge(sum_data, on=["date"], how="inner")
+
+        non_interest_income["non_interest_income"] = non_interest_income["net_fee_commissions_income"] * non_interest_income["balance"] / non_interest_income[
+            "balance_across_segments"]
+
+        non_interest_income.drop(["net_fee_commissions_income", "net_balance_flow", "cumulative_net_balance_flow"], axis=1, inplace=True)
+
         ctx.put_pandas_table("non_interest_income", non_interest_income)
 
 
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(NonInterestIncomeDataModel, "config/calculate_non_interest_income.yaml",
-                        "config/sys_config.yaml")
+    launch.launch_model(NonInterestIncomeModel, "config/calculate_non_interest_income.yaml", "config/sys_config.yaml")

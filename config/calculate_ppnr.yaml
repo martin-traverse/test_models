@@ -1,0 +1,15 @@
+
+job:
+  runModel:
+    parameters:
+
+    inputs:
+      non_interest_income: "outputs/non_interest_income.csv"
+      net_interest_income: "outputs/net_interest_income.csv"
+      business_support_costs: "inputs/ppnr/business_support_costs.csv"
+      processing_costs: "inputs/ppnr/processing_costs.csv"
+      sales_and_marketing_costs: "inputs/ppnr/sales_and_marketing_costs.csv"
+      corporate_centre_costs: "inputs/ppnr/corporate_centre_costs.csv"
+
+    outputs:
+      ppnr_forecast: "outputs/ppnr_forecast.csv"

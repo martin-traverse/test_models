@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="calculate_new_originations" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <configuration default="false" name="calculate_new_originations" type="PythonConfigurationType" factoryName="Python" folderName="ppnr" nameIsGenerated="true">
     <module name="test_models" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
