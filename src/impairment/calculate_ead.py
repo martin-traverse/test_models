@@ -33,7 +33,7 @@ class CalculateEad(trac.TracModel):
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
         ead_model_parameters_schema = trac.load_schema(schemas, "ead_model_parameters.csv")
-        balance_forecast_schema = trac.load_schema(schemas, "balance_forecast.csv")
+        balance_forecast_schema = trac.load_schema(schemas, "balance_forecast_schema.csv")
         mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0_schema.csv")
 
         return {"ead_model_parameters": trac.ModelInputSchema(ead_model_parameters_schema),
