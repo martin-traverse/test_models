@@ -1,5 +1,5 @@
 {
-  "key":"calculate_operating_profit",
-  "name":"Calculate operating profit",
-  "description":"Calculate operating profit for Pre-provision Net Revenue (PPNR)"
+  "key":"calculate_forecast_ppnr",
+  "name":"Calculate forecast PPNR",
+  "description":"Calculate Pre-provision Net Revenue (PPNR) forecast"
 }

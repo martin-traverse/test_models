@@ -86,7 +86,7 @@
     "corporate_centre_costs": {
       "nodeType": "INPUT_NODE"
     },
-    "costs_of_funding": {
+    "cost_of_funding": {
       "nodeType": "INPUT_NODE"
     },
     "customer_rates": {
