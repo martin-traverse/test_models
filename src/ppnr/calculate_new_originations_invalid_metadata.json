@@ -1,0 +1,5 @@
+{
+  "key":"calculate_new_originations",
+  "name":"Calculate new originations (test for invalidation)",
+  "description":"Segment-level projection of new lending volume, based on market size and share assumptions"
+}
