@@ -32,14 +32,14 @@ class CalculatePd(trac.TracModel):
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        economic_scenario_schema = trac.load_schema(schemas, "economic_scenario.csv")
+        economic_scenario_schema = trac.load_schema(schemas, "economic_scenario_schema.csv")
         mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0_schema.csv")
 
         return {"economic_scenario": trac.ModelInputSchema(economic_scenario_schema),
                 "mortgage_book_t0": trac.ModelInputSchema(mortgage_book_t0_schema)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        pd_forecast_schema = trac.load_schema(schemas, "pd_forecast.csv")
+        pd_forecast_schema = trac.load_schema(schemas, "pd_forecast_schema.csv")
 
         return {"pd_forecast": trac.ModelOutputSchema(pd_forecast_schema)}
 
@@ -74,4 +74,4 @@ class CalculatePd(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(CalculatePd, "config/calculate_pd.yaml", "config/sys_config.yaml")
+    launch.launch_model(CalculatePd, "config/impairment/calculate_pd.yaml", "config/sys_config.yaml")

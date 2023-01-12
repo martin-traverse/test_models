@@ -1,0 +1,10 @@
+
+job:
+  runModel:
+    parameters:
+
+    inputs:
+      impairment_forecast: "outputs/impairment/impairment_forecast.csv"
+
+    outputs:
+      impairment_mi: "outputs/impairment/impairment_mi.csv"

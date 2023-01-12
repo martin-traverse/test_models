@@ -2,63 +2,53 @@
   "nodes": {
     "calculate_pd": {
       "nodeType": "MODEL_NODE",
-      "modelStub": {
-        "inputs": [
-          "economic_scenario",
-          "mortgage_book_t0"
-        ],
-        "outputs": [
-          "pd_forecast"
-        ]
-      }
+      "inputs": [
+        "economic_scenario",
+        "mortgage_book_t0"
+      ],
+      "outputs": [
+        "pd_forecast"
+      ]
     },
     "calculate_ead": {
       "nodeType": "MODEL_NODE",
-      "modelStub": {
-        "inputs": [
-          "ead_model_parameters",
-          "balance_forecast",
-          "mortgage_book_t0"
-        ],
-        "outputs": [
-          "ead_forecast"
-        ]
-      }
+      "inputs": [
+        "ead_model_parameters",
+        "balance_forecast",
+        "mortgage_book_t0"
+      ],
+      "outputs": [
+        "ead_forecast"
+      ]
     },
     "calculate_lgd": {
       "nodeType": "MODEL_NODE",
-      "modelStub": {
-        "inputs": [
-          "lgd_model_parameters",
-          "ead_forecast"
-        ],
-        "outputs": [
-          "lgd_forecast"
-        ]
-      }
+      "inputs": [
+        "lgd_model_parameters",
+        "ead_forecast"
+      ],
+      "outputs": [
+        "lgd_forecast"
+      ]
     },
     "calculate_impairment": {
       "nodeType": "MODEL_NODE",
-      "modelStub": {
-        "inputs": [
-          "pd_forecast",
-          "lgd_forecast"
-        ],
-        "outputs": [
-          "impairment_forecast"
-        ]
-      }
+      "inputs": [
+        "pd_forecast",
+        "lgd_forecast"
+      ],
+      "outputs": [
+        "impairment_forecast"
+      ]
     },
     "calculate_impairment_mi": {
       "nodeType": "MODEL_NODE",
-      "modelStub": {
-        "inputs": [
-          "impairment_forecast"
-        ],
-        "outputs": [
-          "impairment_mi"
-        ]
-      }
+      "inputs": [
+        "impairment_forecast"
+      ],
+      "outputs": [
+        "impairment_mi"
+      ]
     },
     "economic_scenario": {
       "nodeType": "INPUT_NODE"
@@ -110,7 +100,7 @@
         "socket": "balance_forecast"
       }
     },
-        {
+    {
       "source": {
         "node": "mortgage_book_t0"
       },

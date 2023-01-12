@@ -23,14 +23,14 @@ class CalculateImpairment(trac.TracModel):
         return trac.declare_parameters()
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        pd_forecast_schema = trac.load_schema(schemas, "pd_forecast.csv")
-        lgd_forecast_schema = trac.load_schema(schemas, "lgd_forecast.csv")
+        pd_forecast_schema = trac.load_schema(schemas, "pd_forecast_schema.csv")
+        lgd_forecast_schema = trac.load_schema(schemas, "lgd_forecast_schema.csv")
 
         return {"pd_forecast": trac.ModelInputSchema(pd_forecast_schema),
                 "lgd_forecast": trac.ModelInputSchema(lgd_forecast_schema)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        impairment_forecast_schema = trac.load_schema(schemas, "impairment_forecast.csv")
+        impairment_forecast_schema = trac.load_schema(schemas, "impairment_forecast_schema.csv")
 
         return {"impairment_forecast": trac.ModelOutputSchema(impairment_forecast_schema)}
 
@@ -50,4 +50,4 @@ class CalculateImpairment(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(CalculateImpairment, "config/calculate_impairment.yaml", "config/sys_config.yaml")
+    launch.launch_model(CalculateImpairment, "config/impairment/calculate_impairment.yaml", "config/sys_config.yaml")

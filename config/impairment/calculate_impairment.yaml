@@ -1,0 +1,11 @@
+
+job:
+  runModel:
+    parameters:
+
+    inputs:
+      lgd_forecast: "outputs/impairment/lgd_forecast.csv"
+      pd_forecast: "outputs/impairment/pd_forecast.csv"
+
+    outputs:
+      impairment_forecast: "outputs/impairment/impairment_forecast.csv"

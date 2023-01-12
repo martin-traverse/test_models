@@ -31,14 +31,14 @@ class CalculateLgd(trac.TracModel):
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        lgd_model_parameters_schema = trac.load_schema(schemas, "lgd_model_parameters.csv")
-        ead_forecast_schema = trac.load_schema(schemas, "ead_forecast.csv")
+        lgd_model_parameters_schema = trac.load_schema(schemas, "lgd_model_parameters_schema.csv")
+        ead_forecast_schema = trac.load_schema(schemas, "ead_forecast_schema.csv")
 
         return {"lgd_model_parameters": trac.ModelInputSchema(lgd_model_parameters_schema),
                 "ead_forecast": trac.ModelInputSchema(ead_forecast_schema)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        lgd_forecast_schema = trac.load_schema(schemas, "lgd_forecast.csv")
+        lgd_forecast_schema = trac.load_schema(schemas, "lgd_forecast_schema.csv")
 
         return {"lgd_forecast": trac.ModelOutputSchema(lgd_forecast_schema)}
 
@@ -69,4 +69,4 @@ class CalculateLgd(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(CalculateLgd, "config/calculate_lgd.yaml", "config/sys_config.yaml")
+    launch.launch_model(CalculateLgd, "config/impairment/calculate_lgd.yaml", "config/sys_config.yaml")

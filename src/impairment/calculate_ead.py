@@ -32,7 +32,7 @@ class CalculateEad(trac.TracModel):
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
-        ead_model_parameters_schema = trac.load_schema(schemas, "ead_model_parameters.csv")
+        ead_model_parameters_schema = trac.load_schema(schemas, "ead_model_parameters_schema.csv")
         balance_forecast_schema = trac.load_schema(schemas, "balance_forecast_schema.csv")
         mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0_schema.csv")
 
@@ -41,7 +41,7 @@ class CalculateEad(trac.TracModel):
                 "mortgage_book_t0": trac.ModelInputSchema(mortgage_book_t0_schema)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
-        ead_forecast_schema = trac.load_schema(schemas, "ead_forecast.csv")
+        ead_forecast_schema = trac.load_schema(schemas, "ead_forecast_schema.csv")
 
         return {"ead_forecast": trac.ModelOutputSchema(ead_forecast_schema)}
 
@@ -80,4 +80,4 @@ class CalculateEad(trac.TracModel):
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
 
-    launch.launch_model(CalculateEad, "config/calculate_ead.yaml", "config/sys_config.yaml")
+    launch.launch_model(CalculateEad, "config/impairment/calculate_ead.yaml", "config/sys_config.yaml")
