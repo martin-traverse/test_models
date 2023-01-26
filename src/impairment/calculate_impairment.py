@@ -16,6 +16,7 @@ import tracdap.rt.api as trac
 import typing as tp
 import impairment.schemas as schemas
 
+# This is a test commit
 
 class CalculateImpairment(trac.TracModel):
 
