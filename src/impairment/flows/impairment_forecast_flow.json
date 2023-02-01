@@ -66,7 +66,18 @@
       "nodeType": "INPUT_NODE"
     },
     "impairment_forecast": {
-      "nodeType": "OUTPUT_NODE"
+      "nodeType": "OUTPUT_NODE",
+      "nodeAttrs": [
+        {
+          "attrName": "key",
+          "value": {
+            "type": {
+              "basicType": 4
+            },
+            "stringValue": "impairment_forecast"
+          }
+        }
+      ]
     },
     "impairment_mi": {
       "nodeType": "OUTPUT_NODE"
