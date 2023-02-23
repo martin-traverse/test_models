@@ -2,6 +2,7 @@
   "nodes": {
     "calculate_pd": {
       "nodeType": "MODEL_NODE",
+      "label": "Calculate IFRS9 PD",
       "inputs": [
         "economic_scenario",
         "mortgage_book_t0"
@@ -12,6 +13,7 @@
     },
     "calculate_ead": {
       "nodeType": "MODEL_NODE",
+      "label": "Calculate EAD",
       "inputs": [
         "ead_model_parameters",
         "balance_forecast",
@@ -23,6 +25,7 @@
     },
     "calculate_lgd": {
       "nodeType": "MODEL_NODE",
+      "label": "Calculate LGD",
       "inputs": [
         "lgd_model_parameters",
         "ead_forecast"
@@ -33,6 +36,7 @@
     },
     "calculate_impairment": {
       "nodeType": "MODEL_NODE",
+      "label": "Calculate Impairment",
       "inputs": [
         "pd_forecast",
         "lgd_forecast"
@@ -43,6 +47,7 @@
     },
     "calculate_impairment_mi": {
       "nodeType": "MODEL_NODE",
+      "label": "Calculate Impairment management summary",
       "inputs": [
         "impairment_forecast"
       ],
@@ -51,19 +56,24 @@
       ]
     },
     "economic_scenario": {
-      "nodeType": "INPUT_NODE"
+      "nodeType": "INPUT_NODE",
+      "label": "Economic scenario"
     },
     "mortgage_book_t0": {
-      "nodeType": "INPUT_NODE"
+      "nodeType": "INPUT_NODE",
+      "label": "Mortgage book start point (T0)"
     },
     "balance_forecast": {
-      "nodeType": "INPUT_NODE"
+      "nodeType": "INPUT_NODE",
+      "label": "Balance forecast"
     },
     "ead_model_parameters": {
-      "nodeType": "INPUT_NODE"
+      "nodeType": "INPUT_NODE",
+      "label": "EAD model parameters"
     },
     "lgd_model_parameters": {
-      "nodeType": "INPUT_NODE"
+      "nodeType": "INPUT_NODE",
+      "label": "LGD model parameters"
     },
     "impairment_forecast": {
       "nodeType": "OUTPUT_NODE",
@@ -72,15 +82,44 @@
           "attrName": "key",
           "value": {
             "type": {
-              "basicType": 4
+              "basicType": "STRING"
             },
             "stringValue": "impairment_forecast"
+          }
+        },
+        {
+          "attrName": "name",
+          "value": {
+            "type": {
+              "basicType": "STRING"
+            },
+            "stringValue": "Impairment forecast"
           }
         }
       ]
     },
     "impairment_mi": {
-      "nodeType": "OUTPUT_NODE"
+      "nodeType": "OUTPUT_NODE",
+      "nodeAttrs": [
+        {
+          "attrName": "key",
+          "value": {
+            "type": {
+              "basicType": "STRING"
+            },
+            "stringValue": "impairment_mi"
+          }
+        },
+        {
+          "attrName": "name",
+          "value": {
+            "type": {
+              "basicType": "STRING"
+            },
+            "stringValue": "Impairment forecast management summary"
+          }
+        }
+      ]
     }
   },
   "edges": [
