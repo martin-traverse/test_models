@@ -2,7 +2,7 @@ import calendar
 import tracdap.rt.api as trac
 import typing as tp
 import random
-from impairment import schemas as schemas
+from impairment.schemas import dummy as schemas
 import datetime
 import pandas as pd
 
@@ -12,10 +12,8 @@ class CalculatePd(trac.TracModel):
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
         return trac.declare_parameters(
 
-            trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast",
-                   default_value=datetime.datetime(2022, 1, 1).date()),
-            trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast",
-                   default_value=datetime.datetime(2025, 12, 1).date())
+            trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast", default_value=datetime.datetime(2022, 1, 1).date()),
+            trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast", default_value=datetime.datetime(2025, 12, 1).date())
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:

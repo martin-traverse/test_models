@@ -1,0 +1,12 @@
+field_name, field_type, label, categorical, business_key, format_code
+date, DATE, Date, false, false, "MONTH"
+business_line, STRING, Business line, true, false
+mortgage_type, STRING, Mortgage type, true, false
+total_balance, FLOAT, Total drawn balance, false, false,",|.|0|£|"
+total_ead, FLOAT, Total EAD, false, false,",|.|2|£|"
+mean_lgd_12m, FLOAT, Average LGD (12m), false, false,"|.|1||%"
+mean_lgd_lifetime, FLOAT, Average LGD (lifetime), false, false,"|.|1||%"
+mean_pd_12m, FLOAT, Average PD (12m), false, false,",|.|4||%"
+mean_pd_lifetime, FLOAT, Average PD (lifetime), false, false,",|.|4||%"
+total_ecl_12m, FLOAT, Total ECL (12m), false, false,",|.|0|£|"
+total_ecl_lifetime, FLOAT, Total ECL (lifetime), false, false,",|.|0|£|"
