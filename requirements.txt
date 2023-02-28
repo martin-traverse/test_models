@@ -1,1 +1,1 @@
-tracdap-runtime >= 0.5.24
+tracdap-runtime == 0.5.24
