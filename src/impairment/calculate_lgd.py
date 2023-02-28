@@ -11,11 +11,10 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-
 import tracdap.rt.api as trac
 import typing as tp
 import random
-import impairment.schemas as schemas
+from impairment import schemas as schemas
 import datetime
 
 
