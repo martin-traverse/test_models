@@ -1,0 +1,2 @@
+field_order,field_name, field_type, label, categorical, business_key, format_code
+0,value, FLOAT, Value, false, false,

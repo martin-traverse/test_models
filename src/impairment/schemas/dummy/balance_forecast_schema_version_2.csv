@@ -1,8 +1,0 @@
-field_order,field_name, field_type, label, categorical, business_key, format_code
-,date, DATE, Date version 2, false, false, "MONTH"
-1,business_line, STRING, Business line, true, false,
-,region, STRING, Region, true, false,
-,mortgage_type, STRING, Mortgage type, true, false,
-2,net_balance_flow, FLOAT, Net balance flow, false, false,",|.|2|EUR|m"
-,cumulative_net_balance_flow, FLOAT, Cumulative net balance flow, false, false,",|.|0|EUR|m"
-,balance, FLOAT, Drawn balance, false, false,",|.|0|EUR|m"

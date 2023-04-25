@@ -1,0 +1,28 @@
+
+job:
+  runModel:
+    parameters:
+      float_without_default: 1.1
+      decimal_without_default: 1.11
+      integer_without_default: 1
+      boolean_without_default: False
+      date_without_default: "2023-01-01"
+      datetime_without_default: "2022-11-09T20:14:23.300"
+      string_without_default: "test_string"
+
+      float_with_default: 1.1
+      decimal_with_default: 1.11
+      integer_with_default: 1
+      boolean_with_default: False
+      date_with_default: "2023-01-01"
+      datetime_with_default: "2022-11-09T20:14:23.300"
+      string_with_default: "test_string"
+
+      #boolean_list_without_default: [False, False, True, True]
+      string_list_without_default: ["A", "B", "C"]
+
+    inputs:
+      test_input: "inputs/test_models/test_data_1.csv"
+
+    outputs:
+      test_output: "outputs/test_models/test_output.csv"

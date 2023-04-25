@@ -2,7 +2,7 @@ import calendar
 import tracdap.rt.api as trac
 import typing as tp
 import random
-from impairment.schemas import dummy as schemas
+from impairment import schemas as schemas
 import datetime
 import pandas as pd
 
