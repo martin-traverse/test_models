@@ -29,6 +29,24 @@ class CalculatePd(trac.TracModel):
         return {"pd_forecast": trac.ModelOutputSchema(pd_forecast_schema)}
 
     def run_model(self, ctx: trac.TracContext):
+
+        print("here")
+        pd_forecast_schema = ctx.get_schema("pd_forecast")
+        print(pd_forecast_schema.table.fields)
+        for f in pd_forecast_schema.table.fields:
+            print(f)
+            print(f.fieldType)
+
+        x = filter(lambda field: field.fieldType == trac.STRING, pd_forecast_schema.table.fields)
+        print(x)
+
+        keys = []
+        for f in x:
+            print(f)
+            keys.append(f.fieldName)
+
+        print(keys)
+
         first_forecast_month = ctx.get_parameter("first_forecast_month")
         last_forecast_month = ctx.get_parameter("last_forecast_month")
 

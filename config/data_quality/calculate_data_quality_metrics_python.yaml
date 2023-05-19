@@ -1,0 +1,10 @@
+
+job:
+  runModel:
+    parameters:
+
+    inputs:
+      data: "inputs/impairment/mortgage_book_t0.csv"
+
+    outputs:
+      data_quality_report: "outputs/data_quality/data_quality_report_python.csv"
