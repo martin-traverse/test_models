@@ -87,8 +87,6 @@ class Wrapper(trac.TracModel):
         data = ctx.get_pandas_table("data")
 
         # Load the schema for the input data
-        # TODO this schema is fixed at the moment but when dynamic schemas are available in the
-        #  API we will be able to define a schema at runtime
         data_schema = ctx.get_schema("data")
 
         # A dictionary of variable name lists broken down by type

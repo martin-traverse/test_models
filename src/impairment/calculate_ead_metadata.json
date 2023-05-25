@@ -1,5 +1,5 @@
 {
-  "key": "a",
+  "key": "calculate_ead",
   "name": "Calculate account REA - in governance",
   "description": "Calculate account REA",
   "business_segments": ["RETAIL", "MORTGAGE", "EAD" , "ALM", "LIQUIDITY"]
