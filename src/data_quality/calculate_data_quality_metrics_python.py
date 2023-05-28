@@ -87,6 +87,8 @@ class Wrapper(trac.TracModel):
         data = ctx.get_pandas_table("data")
 
         # Load the schema for the input data
+        # TODO this schema is fixed at the moment but when dynamic schemas are available in the
+        #  API we will be able to define a schema at runtime
         data_schema = ctx.get_schema("data")
 
         # A dictionary of variable name lists broken down by type
@@ -255,11 +257,11 @@ class Wrapper(trac.TracModel):
         aggregation_data_quality_report = data.agg(**numeric_aggregation_statistics).T.reset_index(names="field_name")
 
         # This is a list of the final set of aggregation statistics we want to have on the final version of
-        # 'aggregation_data_quality_report'
+        # 'aggregation_data_quality_report'.
         list_to_extract = ["count_unique_values", "sum", "minimum_number_value", "maximum_number_value", "mean_number_value", "median_number_value", "minimum_date_value", "maximum_date_value",
                            "median_date_value", "minimum_datetime_value", "maximum_datetime_value", "median_datetime_value"]
 
-        # For each statistic we want coalesce the values from across the columns (which are per variable)
+        # For each statistic we want to coalesce the values from across the columns (which are per variable)
         for item in list_to_extract:
             aggregation_data_quality_report[item] = Wrapper.extract_columns_into_single_statistic(aggregation_data_quality_report, item + "_")
 
