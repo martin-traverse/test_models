@@ -7,9 +7,9 @@ region, STRING, Region, true, false
 subregion, STRING, Sub-region, true, false
 mortgage_type, STRING, Mortgage type, true, false
 valuation, FLOAT, Valuation, false, false,",|.|0|| EUR"
-dtv, FLOAT, Debt to value, false, false,",|.|1||%"
+dtv, FLOAT, Debt to value, false, false,",|.|1||%|100"
 balance, FLOAT, Drawn balance, false, false,",|.|2|| EUR"
 monthly_repayment, FLOAT, Monthly repayment, false, false,",|.|2|| EUR"
-months_in_arrears, INTEGER, Monthly repayment, false, false,"||0||"
-pd_12m, FLOAT, PD (12m), false, false,",|.|4||%"
+months_in_arrears, INTEGER, Months in arrears, false, false,"||0||"
+pd_12m, FLOAT, PD (12m), false, false,",|.|4||%|100"
 in_default, BOOLEAN, In default, false, false
