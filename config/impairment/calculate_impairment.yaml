@@ -2,6 +2,7 @@
 job:
   runModel:
     parameters:
+      impairment_weight: 1.2
 
     inputs:
       lgd_forecast: "outputs/impairment/lgd_forecast.csv"
