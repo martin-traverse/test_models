@@ -2,20 +2,21 @@ import calendar
 import tracdap.rt.api as trac
 import typing as tp
 from impairment import schemas as schemas
-import datetime
+import datetime as dt
 import pandas as pd
 
 
 class CalculateEad(trac.TracModel):
 
     def define_parameters(self) -> tp.Dict[str, trac.ModelParameter]:
-        return trac.declare_parameters(
 
-            trac.P("first_forecast_month", trac.BasicType.DATE, label="First month of forecast", default_value=datetime.datetime(2022, 1, 1).date()),
-            trac.P("last_forecast_month", trac.BasicType.DATE, label="Last month of forecast", default_value=datetime.datetime(2025, 12, 1).date())
+        return trac.declare_parameters(
+            trac.P("first_forecast_month", trac.DATE, label="First month of forecast", default_value=dt.datetime(2022, 1, 1).date()),
+            trac.P("last_forecast_month", trac.DATE, label="Last month of forecast", default_value=dt.datetime(2025, 12, 1).date())
         )
 
     def define_inputs(self) -> tp.Dict[str, trac.ModelInputSchema]:
+
         ead_model_parameters_schema = trac.load_schema(schemas, "ead_model_parameters_schema.csv")
         balance_forecast_schema = trac.load_schema(schemas, "balance_forecast_schema.csv")
         mortgage_book_t0_schema = trac.load_schema(schemas, "mortgage_book_t0_schema.csv")
@@ -25,11 +26,13 @@ class CalculateEad(trac.TracModel):
                 "mortgage_book_t0": trac.ModelInputSchema(mortgage_book_t0_schema)}
 
     def define_outputs(self) -> tp.Dict[str, trac.ModelOutputSchema]:
+
         ead_forecast_schema = trac.load_schema(schemas, "ead_forecast_schema.csv")
 
         return {"ead_forecast": trac.ModelOutputSchema(ead_forecast_schema)}
 
     def run_model(self, ctx: trac.TracContext):
+
         first_forecast_month = ctx.get_parameter("first_forecast_month")
         last_forecast_month = ctx.get_parameter("last_forecast_month")
 
@@ -57,11 +60,11 @@ class CalculateEad(trac.TracModel):
                     pow(1 + (0.05 / 12), ead_forecast["time_to_default"]) - 1)
 
         ead_forecast.drop(["pd_12m", "in_default", "month_index"], axis=1, inplace=True)
+
         # Output the dataset
         ctx.put_pandas_table("ead_forecast", ead_forecast)
 
 
 if __name__ == "__main__":
     import tracdap.rt.launch as launch
-
     launch.launch_model(CalculateEad, "config/impairment/calculate_ead.yaml", "config/sys_config.yaml")
